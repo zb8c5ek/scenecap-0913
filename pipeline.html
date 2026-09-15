@@ -95,13 +95,13 @@ a{color:var(--accent)}
 <header>
 <div class='eyebrow'>Underground car park &middot; 2026-09-13 &middot; MOD_PanoReg + MOD_PostDirector</div>
 <h1>Car Park to Clips</h1>
-<p class='lede'>A 103-second walk with a 360 camera, two GoPro walks of the same aisles, and a pipeline that turns them into <b>52,188 frames of vehicle-lens video, each with a metric range map</b> and not one of them showing the person who carried the camera. Every block below says what it does and what it measured.</p>
-<div class='meta'><span>built 2026-09-15 17:21</span><span>180 clips exported</span><span>87 min of footage from 103 s of capture</span></div>
+<p class='lede'>A 103-second walk with a 360 camera, two GoPro walks of the same aisles, and a pipeline that turns them into <b>69,459 frames of vehicle-lens video, each with a metric range map</b> and not one of them showing the person who carried the camera. Every block below says what it does and what it measured.</p>
+<div class='meta'><span>built 2026-09-15 18:23</span><span>240 clips exported</span><span>116 min of footage from 103 s of capture</span></div>
 </header>
 <div class='rail'>
 <div><div class='k'>Source</div><div class='v'>5,136</div><div class='s'>frames at 50 fps, 7,680 px wide</div></div>
 <div><div class='k'>Registered</div><div class='v'>4,548</div><div class='s'>cameras of both walks in one frame</div></div>
-<div><div class='k'>Clips</div><div class='v'>180</div><div class='s'>30 s at 10 Hz, each its own path</div></div>
+<div><div class='k'>Clips</div><div class='v'>240</div><div class='s'>30 s at 10 Hz, each its own path</div></div>
 <div><div class='k'>Depth</div><div class='v'>10 m</div><div class='s'>cap; beyond it carries no label</div></div>
 <div><div class='k'>Per clip</div><div class='v'>2.9 min</div><div class='s'>render, depth, verify, measure, export</div></div>
 <div><div class='k'>Carrier</div><div class='v'>none</div><div class='s'>visible in any delivered frame, audited</div></div>
@@ -302,8 +302,8 @@ a{color:var(--accent)}
 <div class='top'><span class='id'>S</span><h4>Export the clips</h4><span class='chip run'>running</span></div>
 <div class='id'>what you take away</div><p>Each rendering becomes a folder: the frames, the range maps with far surfaces and floor leaks masked out, its own registered model, and the per-frame criteria.</p><dl>
 <dt>takes</dt><dd class='t'>34 min per lens</dd>
-<dt>exported</dt><dd>180 renderings, 52,188 frames</dd>
-<dt>lenses finished</dt><dd>3 of 4</dd>
+<dt>exported</dt><dd>240 renderings, 69,459 frames</dd>
+<dt>lenses finished</dt><dd>4 of 4</dd>
 <dt>per clip</dt><dd>34 s</dd>
 <dt>output</dt><dd>&lt;lens&gt;/direct_p5/clips/clip&lt;k&gt;/pass&lt;p&gt;</dd></dl></article>
 <article class='card' id='cT'>
@@ -317,5 +317,5 @@ a{color:var(--accent)}
 <dt>output</dt><dd>MOD_PostDirector/notes/scenecap_0913_qa_byd_sq_back.json</dd></dl></article>
 </div></section>
 <section><h2>What a reader should distrust</h2><p class='note'>The metric scale is provisional: every metre on this page follows from reading the bay-separator pitch as 2.5 m, and a tape measure in the garage would fix it in an afternoon. The mesh carries one crater in the floor, about two metres across, that the walk crosses three times. And the clip models declare <code>OPENCV_FISHEYE</code>, whose reference implementation cannot evaluate the outer sixth of a 206 deg lens, so the depth there is correct but standard tooling will not reproduce it.</p></section>
-<div class='foot'>Built from the tools' own JSON by <code>pr_flow_page.py</code>; no figure on this page was typed by hand. 2026-09-15 17:21.</div>
+<div class='foot'>Built from the tools' own JSON by <code>pr_flow_page.py</code>; no figure on this page was typed by hand. 2026-09-15 18:23.</div>
 </main></body></html>

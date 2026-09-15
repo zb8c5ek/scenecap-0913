@@ -57,18 +57,18 @@ a{color:var(--accent)}
 <h1>SceneCap 0913</h1>
 <p class='lede'>One 103-second walk with a 360 camera and two GoPro walks of the same aisles, turned into <b>vehicle-lens video with a metric range map behind every frame</b> and no sign of the person who carried the camera. Four pages, depending on what you came for.</p>
 <div class='rail'>
-<div><div class='k'>Clips</div><div class='v'>120</div><div class='s'>30 s at 10 Hz, each with its own viewing path</div></div>
-<div><div class='k'>Frames</div><div class='v'>34,748</div><div class='s'>every one with a metric range map</div></div>
-<div><div class='k'>Footage</div><div class='v'>58 min</div><div class='s'>from 103 s of capture</div></div>
-<div><div class='k'>Lenses</div><div class='v'>2 of 4</div><div class='s'>finished; the rest are rendering now</div></div>
+<div><div class='k'>Clips</div><div class='v'>240</div><div class='s'>30 s at 10 Hz, each with its own viewing path</div></div>
+<div><div class='k'>Frames</div><div class='v'>69,459</div><div class='s'>every one with a metric range map</div></div>
+<div><div class='k'>Footage</div><div class='v'>116 min</div><div class='s'>from 103 s of capture</div></div>
+<div><div class='k'>Lenses</div><div class='v'>4 of 4</div><div class='s'>finished; the rest are rendering now</div></div>
 <div><div class='k'>Cost</div><div class='v'>2.9 min</div><div class='s'>of compute per delivered clip</div></div>
 <div><div class='k'>Carrier</div><div class='v'>none</div><div class='s'>visible in any delivered frame</div></div>
 </div>
 <section><h2>The pages</h2><div class='doors'>
 <a class='door' href='pipeline.html'><div class='q'>How does a walk through a garage become training clips?</div><div class='name'>Car Park to Clips</div><p>twenty blocks in five lanes, each with what it does, what it measured and where its output lives</p><div class='who'>For anyone meeting the project for the first time.</div><div class='go'>open &rarr;</div></a>
 <a class='door' href='model.html'><div class='q'>Is the model itself any good?</div><div class='name'>How the Model Was Built</div><p>nineteen figures from the two walks through registration, mesh and metric scale, with the numbers under each</p><div class='who'>For someone who wants the evidence, not the summary.</div><div class='go'>open &rarr;</div></a>
-<a class='door' href='lens.html'><div class='q'>What does a delivered lens actually look like?</div><div class='name'>One Lens, Sixty Clips</div><p>render and depth pairs, per-clip metrics, the clip map over the scene and a point cloud you can orbit</p><div class='who'>For whoever will train on this material.</div><div class='go'>open &rarr;</div></a>
-<a class='door' href='status.html'><div class='q'>Where does production stand, and what did it cost?</div><div class='name'>SceneCap Production Status</div><p>state per lens, the stage table of the run, and the decision the overnight failure left open</p><div class='who'>For checking in while the GPU works.</div><div class='go'>open &rarr;</div></a>
+<a class='door' href='lens.html'><div class='q'>What did the production actually deliver?</div><div class='name'>Four Lenses, 240 Clips</div><p>every clip of every lens with its metrics, render and depth pairs, the clip maps and a point cloud you can orbit</p><div class='who'>For whoever will train on this material.</div><div class='go'>open &rarr;</div></a>
+<a class='door' href='status.html'><div class='q'>How did the production go, and what is still open?</div><div class='name'>SceneCap Production Status</div><p>state per lens, what the two failures cost, and the four decisions the run leaves behind</p><div class='who'>For checking in while the GPU works.</div><div class='go'>open &rarr;</div></a>
 </div></section>
 <section><h2>The material itself</h2><div class='files'><dl>
 <dt>clips</dt><dd>G:\0913SceneCapDepth_work\postdirector\vehicle_sets\&lt;lens&gt;\direct_p5\clips\clip&lt;k&gt;\pass&lt;p&gt;</dd>
@@ -79,5 +79,5 @@ a{color:var(--accent)}
 <dt>the registration</dt><dd>G:\0913SceneCapDepth_work\colmap\merged_geo_metric_provisional\sparse\0</dd>
 </dl></div>
 <div class='caveat'><b>Three things to know before you trust a number.</b> The metric scale is provisional: every metre follows from reading the painted bay pitch as 2.5 m, and a tape measure would settle it. The mesh carries one crater in the floor about two metres across, which the walk crosses three times. And the clip models declare OPENCV_FISHEYE, whose reference implementation cannot evaluate the outer sixth of a 206&deg; lens, so the depth there is right but standard tooling will not reproduce it.</div></section>
-<div class='foot'>built 2026-09-15 14:32 &middot; every figure read from the tools' own output, none typed by hand</div>
+<div class='foot'>built 2026-09-15 18:23 &middot; every figure read from the tools' own output, none typed by hand</div>
 </main></body></html>
