@@ -48,6 +48,7 @@ svg.flow text{font-family:"IBM Plex Sans",system-ui,sans-serif;fill:var(--ink)}
 svg.flow .lane{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
 svg.flow .bt{font-size:11.5px;font-weight:600}
 svg.flow .bs{font-size:10px;fill:var(--ink-3)}
+svg.flow .bt2{font-size:9.5px;font-family:"IBM Plex Mono",monospace;fill:var(--ink-3)}
 svg.flow .box{fill:var(--panel);stroke:var(--rule)}
 svg.flow .box.plan{stroke-dasharray:5 3}
 svg.flow .check{fill:var(--panel);stroke:var(--accent);stroke-width:1.6}
@@ -71,6 +72,7 @@ svg.flow a:hover .box{stroke:var(--accent);stroke-width:2}
 .card dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:12px 0 0;font-size:12.8px}
 .card dt{color:var(--ink-3);font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding-top:3px}
 .card dd{margin:0;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.card dd.t{color:var(--ink)}
 .chip{display:inline-flex;align-items:center;gap:5px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--opt-bg);color:var(--opt);white-space:nowrap}
 .chip.done{background:var(--done-bg);color:var(--done)}
 .chip.run{background:var(--run-bg);color:var(--run)}
@@ -91,7 +93,7 @@ a{color:var(--accent)}
 <div class='eyebrow'>Underground car park &middot; 2026-09-13 &middot; MOD_PanoReg + MOD_PostDirector</div>
 <h1>Car Park to Clips</h1>
 <p class='lede'>A 103-second walk with a 360 camera, two GoPro walks of the same aisles, and a pipeline that turns them into <b>52,188 frames of vehicle-lens video, each with a metric range map</b> and not one of them showing the person who carried the camera. Every block below says what it does and what it measured.</p>
-<div class='meta'><span>built 2026-09-15 16:09</span><span>180 clips exported</span><span>87 min of footage from 103 s of capture</span></div>
+<div class='meta'><span>built 2026-09-15 16:14</span><span>180 clips exported</span><span>87 min of footage from 103 s of capture</span></div>
 </header>
 <div class='rail'>
 <div><div class='k'>Source</div><div class='v'>5,136</div><div class='s'>frames at 50 fps, 7,680 px wide</div></div>
@@ -101,13 +103,14 @@ a{color:var(--accent)}
 <div><div class='k'>Per clip</div><div class='v'>2.9 min</div><div class='s'>render, depth, verify, measure, export</div></div>
 <div><div class='k'>Carrier</div><div class='v'>none</div><div class='s'>visible in any delivered frame, audited</div></div>
 </div>
-<section><h2>The flow</h2><p>Five stages. Dashed links hand a result from one stage to the next, the orange one is the only loop. Everything here runs unattended except the check, which a person makes by looking: when the mesh does not match the photographs, the answer is a better capture, another session or a longer one over what was missed. Click a block to jump to its card.</p>
-<div class='flowwrap'><svg class='flow' viewBox='0 0 1156 728' role='img' aria-label='the pipeline from capture to clips'><defs><marker id='ah' viewBox='0 0 8 8' refX='7' refY='4' markerWidth='7' markerHeight='7' orient='auto'><path d='M0 0 L8 4 L0 8 z' fill='var(--accent-line)'/></marker><marker id='ab' viewBox='0 0 8 8' refX='7' refY='4' markerWidth='7' markerHeight='7' orient='auto'><path d='M0 0 L8 4 L0 8 z' fill='var(--run)'/></marker></defs><text class='lane' x='16' y='111.0' fill='var(--lane-capture)'>Capture</text><rect x='16' y='117.0' width='88' height='2.5' rx='1.2' fill='var(--lane-capture)' opacity='.45'/><text class='lane' x='16' y='231.0' fill='var(--lane-register)'>SfM model</text><rect x='16' y='237.0' width='88' height='2.5' rx='1.2' fill='var(--lane-register)' opacity='.45'/><text class='lane' x='16' y='351.0' fill='var(--lane-mesh)'>Scene mesh</text><rect x='16' y='357.0' width='88' height='2.5' rx='1.2' fill='var(--lane-mesh)' opacity='.45'/><text class='lane' x='16' y='555.0' fill='var(--lane-plan)'>Direct</text><rect x='16' y='561.0' width='88' height='2.5' rx='1.2' fill='var(--lane-plan)' opacity='.45'/><text class='lane' x='16' y='675.0' fill='var(--lane-deliver)'>Produce</text><rect x='16' y='681.0' width='88' height='2.5' rx='1.2' fill='var(--lane-deliver)' opacity='.45'/><path class='link' d='M310 107.0 H330' marker-end='url(#ah)'/><path class='link' d='M310 227.0 H330' marker-end='url(#ah)'/><path class='link' d='M514 227.0 H534' marker-end='url(#ah)'/><path class='link' d='M718 227.0 H738' marker-end='url(#ah)'/><path class='link' d='M922 227.0 H942' marker-end='url(#ah)'/><path class='link' d='M310 347.0 H330' marker-end='url(#ah)'/><path class='link' d='M514 347.0 H534' marker-end='url(#ah)'/><path class='link' d='M718 347.0 H738' marker-end='url(#ah)'/><path class='link' d='M922 347.0 H942' marker-end='url(#ah)'/><text class='edge yes' x='935.0' y='340.0' text-anchor='middle'>pass</text><path class='link' d='M310 551.0 H330' marker-end='url(#ah)'/><path class='link' d='M514 551.0 H534' marker-end='url(#ah)'/><path class='link' d='M718 551.0 H738' marker-end='url(#ah)'/><path class='link' d='M922 551.0 H942' marker-end='url(#ah)'/><path class='link' d='M310 671.0 H330' marker-end='url(#ah)'/><path class='link' d='M514 671.0 H534' marker-end='url(#ah)'/><path class='link' d='M718 671.0 H738' marker-end='url(#ah)'/><path class='link' d='M922 671.0 H942' marker-end='url(#ah)'/><path class='link cross' d='M833.0 378 V394' marker-end='url(#ah)'/><text class='edge yes' x='840.0' y='392'>pass</text><path class='link back' d='M833.0 316 V26 H221.0 V70' marker-end='url(#ab)'/><text class='edge no' x='823.0' y='307' text-anchor='end'>fail</text><text class='back' x='233.0' y='19'>improve the capture</text><path class='link cross' d='M425.0 138 V167.0 H221.0 V190' marker-end='url(#ah)'/><path class='link cross' d='M1037.0 258 V287.0 H221.0 V310' marker-end='url(#ah)'/><path class='link cross' d='M1037.0 378 V449.0 H221.0 V514' marker-end='url(#ah)'/><path class='link cross' d='M1037.0 582 V611.0 H221.0 V634' marker-end='url(#ah)'/><a href='#cA'><rect class='box' x='132' y='76' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='132' y='76' width='3.5' height='62' rx='1.7' fill='var(--lane-capture)'/><text class='bt' x='146' y='101'>360 walks</text><text class='bs' x='146' y='119'>Insta360 X6, one or more sessions</text></a><a href='#cB'><rect class='box' x='336' y='76' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='336' y='76' width='3.5' height='62' rx='1.7' fill='var(--lane-capture)'/><text class='bt' x='350' y='101'>GoPro walks</text><text class='bs' x='350' y='119'>the geometry donors, any number</text></a><a href='#cC'><rect class='box' x='132' y='196' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='132' y='196' width='3.5' height='62' rx='1.7' fill='var(--lane-register)'/><text class='bt' x='146' y='221'>Cube faces and masks</text><text class='bs' x='146' y='239'>pr_cut_faces, pr_mask_faces</text></a><a href='#cD'><rect class='box' x='336' y='196' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='336' y='196' width='3.5' height='62' rx='1.7' fill='var(--lane-register)'/><text class='bt' x='350' y='221'>RealityScan stage 1</text><text class='bs' x='350' y='239'>the 360 backbone</text></a><a href='#cE'><rect class='box' x='540' y='196' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='540' y='196' width='3.5' height='62' rx='1.7' fill='var(--lane-register)'/><text class='bt' x='554' y='221'>RealityScan stage 2</text><text class='bs' x='554' y='239'>GoPro frames added</text></a><a href='#cF'><rect class='box' x='744' y='196' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='744' y='196' width='3.5' height='62' rx='1.7' fill='var(--lane-register)'/><text class='bt' x='758' y='221'>Join by geometry</text><text class='bs' x='758' y='239'>pr_register_orthomaps</text></a><a href='#cG'><rect class='box' x='948' y='196' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='948' y='196' width='3.5' height='62' rx='1.7' fill='var(--lane-register)'/><text class='bt' x='962' y='221'>The merged model</text><text class='bs' x='962' y='239'>one frame, one gauge</text></a><a href='#cH0'><rect class='box' x='132' y='316' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='132' y='316' width='3.5' height='62' rx='1.7' fill='var(--lane-mesh)'/><text class='bt' x='146' y='341'>Optimise the cameras</text><text class='bs' x='146' y='359'>Metashape, on the merged model</text></a><a href='#cH1'><rect class='box plan' x='336' y='316' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='336' y='316' width='3.5' height='62' rx='1.7' fill='var(--lane-mesh)'/><text class='bt' x='350' y='341'>Drop the bad frames</text><text class='bs' x='350' y='359'>before anything is built</text></a><a href='#cH'><rect class='box' x='540' y='316' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='540' y='316' width='3.5' height='62' rx='1.7' fill='var(--lane-mesh)'/><text class='bt' x='554' y='341'>Gaussian splatting</text><text class='bs' x='554' y='359'>RaDe-GS, the radegs container</text></a><a href='#cH2'><rect class='box plan' x='744' y='400' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='744' y='400' width='3.5' height='62' rx='1.7' fill='var(--lane-mesh)'/><text class='bt' x='758' y='425'>Dense cloud</text><text class='bs' x='758' y='443'>in the background, once the check passes</text></a><a href='#cI'><polygon class='check' points='758,316 908,316 922,347.0 908,378 758,378 744,347.0'/><text class='bt' x='766' y='341'>Eyeball check</text><text class='bs' x='766' y='359'>a person decides</text></a><a href='#cJ'><rect class='box' x='948' y='316' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='948' y='316' width='3.5' height='62' rx='1.7' fill='var(--lane-mesh)'/><text class='bt' x='962' y='341'>Metric gauge</text><text class='bs' x='962' y='359'>provisional</text></a><a href='#cK'><rect class='box' x='132' y='520' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='132' y='520' width='3.5' height='62' rx='1.7' fill='var(--lane-plan)'/><text class='bt' x='146' y='545'>Find the carrier</text><text class='bs' x='146' y='563'>pd_detect</text></a><a href='#cL'><rect class='box' x='336' y='520' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='336' y='520' width='3.5' height='62' rx='1.7' fill='var(--lane-plan)'/><text class='bt' x='350' y='545'>Confidence region</text><text class='bs' x='350' y='563'>pd_coverage</text></a><a href='#cM'><rect class='box' x='540' y='520' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='540' y='520' width='3.5' height='62' rx='1.7' fill='var(--lane-plan)'/><text class='bt' x='554' y='545'>Hole lattice</text><text class='bs' x='554' y='563'>pd_select</text></a><a href='#cN'><rect class='box' x='744' y='520' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='744' y='520' width='3.5' height='62' rx='1.7' fill='var(--lane-plan)'/><text class='bt' x='758' y='545'>The director</text><text class='bs' x='758' y='563'>pd_direct</text></a><a href='#cO'><rect class='box' x='948' y='520' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='948' y='520' width='3.5' height='62' rx='1.7' fill='var(--lane-plan)'/><text class='bt' x='962' y='545'>Avoid the holes</text><text class='bs' x='962' y='563'>the cost that made it work</text></a><a href='#cP'><rect class='box' x='132' y='640' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='132' y='640' width='3.5' height='62' rx='1.7' fill='var(--lane-deliver)'/><text class='bt' x='146' y='665'>Render</text><text class='bs' x='146' y='683'>pd_render</text></a><a href='#cQ'><rect class='box' x='336' y='640' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='336' y='640' width='3.5' height='62' rx='1.7' fill='var(--lane-deliver)'/><text class='bt' x='350' y='665'>Cast the depth</text><text class='bs' x='350' y='683'>the expensive step</text></a><a href='#cR'><rect class='box' x='540' y='640' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='540' y='640' width='3.5' height='62' rx='1.7' fill='var(--lane-deliver)'/><text class='bt' x='554' y='665'>Verify and measure</text><text class='bs' x='554' y='683'>pd_verify, pd_metrics</text></a><a href='#cS'><rect class='box' x='744' y='640' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='744' y='640' width='3.5' height='62' rx='1.7' fill='var(--lane-deliver)'/><text class='bt' x='758' y='665'>Export the clips</text><text class='bs' x='758' y='683'>what you take away</text></a><a href='#cT'><rect class='box' x='948' y='640' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='948' y='640' width='3.5' height='62' rx='1.7' fill='var(--lane-deliver)'/><text class='bt' x='962' y='665'>Audit</text><text class='bs' x='962' y='683'>five auditors, then refuters</text></a></svg></div></section>
+<section><h2>The flow</h2><p>Five stages, each block with what it cost on this run - the corner of a block is its measured time, and the card says what that time was measured over. Dashed links hand a result from one stage to the next, the orange one is the only loop. Everything here runs unattended except the check, which a person makes by looking: when the mesh does not match the photographs, the answer is a better capture, another session or a longer one over what was missed. Click a block to jump to its card.</p>
+<div class='flowwrap'><svg class='flow' viewBox='0 0 1156 728' role='img' aria-label='the pipeline from capture to clips'><defs><marker id='ah' viewBox='0 0 8 8' refX='7' refY='4' markerWidth='7' markerHeight='7' orient='auto'><path d='M0 0 L8 4 L0 8 z' fill='var(--accent-line)'/></marker><marker id='ab' viewBox='0 0 8 8' refX='7' refY='4' markerWidth='7' markerHeight='7' orient='auto'><path d='M0 0 L8 4 L0 8 z' fill='var(--run)'/></marker></defs><text class='lane' x='16' y='111.0' fill='var(--lane-capture)'>Capture</text><rect x='16' y='117.0' width='88' height='2.5' rx='1.2' fill='var(--lane-capture)' opacity='.45'/><text class='lane' x='16' y='231.0' fill='var(--lane-register)'>SfM model</text><rect x='16' y='237.0' width='88' height='2.5' rx='1.2' fill='var(--lane-register)' opacity='.45'/><text class='lane' x='16' y='351.0' fill='var(--lane-mesh)'>Scene mesh</text><rect x='16' y='357.0' width='88' height='2.5' rx='1.2' fill='var(--lane-mesh)' opacity='.45'/><text class='lane' x='16' y='555.0' fill='var(--lane-plan)'>Direct</text><rect x='16' y='561.0' width='88' height='2.5' rx='1.2' fill='var(--lane-plan)' opacity='.45'/><text class='lane' x='16' y='675.0' fill='var(--lane-deliver)'>Produce</text><rect x='16' y='681.0' width='88' height='2.5' rx='1.2' fill='var(--lane-deliver)' opacity='.45'/><path class='link' d='M310 107.0 H330' marker-end='url(#ah)'/><path class='link' d='M310 227.0 H330' marker-end='url(#ah)'/><path class='link' d='M514 227.0 H534' marker-end='url(#ah)'/><path class='link' d='M718 227.0 H738' marker-end='url(#ah)'/><path class='link' d='M922 227.0 H942' marker-end='url(#ah)'/><path class='link' d='M310 347.0 H330' marker-end='url(#ah)'/><path class='link' d='M514 347.0 H534' marker-end='url(#ah)'/><path class='link' d='M718 347.0 H738' marker-end='url(#ah)'/><path class='link' d='M922 347.0 H942' marker-end='url(#ah)'/><text class='edge yes' x='935.0' y='340.0' text-anchor='middle'>pass</text><path class='link' d='M310 551.0 H330' marker-end='url(#ah)'/><path class='link' d='M514 551.0 H534' marker-end='url(#ah)'/><path class='link' d='M718 551.0 H738' marker-end='url(#ah)'/><path class='link' d='M922 551.0 H942' marker-end='url(#ah)'/><path class='link' d='M310 671.0 H330' marker-end='url(#ah)'/><path class='link' d='M514 671.0 H534' marker-end='url(#ah)'/><path class='link' d='M718 671.0 H738' marker-end='url(#ah)'/><path class='link' d='M922 671.0 H942' marker-end='url(#ah)'/><path class='link cross' d='M833.0 378 V394' marker-end='url(#ah)'/><text class='edge yes' x='840.0' y='392'>pass</text><path class='link back' d='M833.0 316 V26 H221.0 V70' marker-end='url(#ab)'/><text class='edge no' x='823.0' y='307' text-anchor='end'>fail</text><text class='back' x='233.0' y='19'>improve the capture</text><path class='link cross' d='M425.0 138 V167.0 H221.0 V190' marker-end='url(#ah)'/><path class='link cross' d='M1037.0 258 V287.0 H221.0 V310' marker-end='url(#ah)'/><path class='link cross' d='M1037.0 378 V449.0 H221.0 V514' marker-end='url(#ah)'/><path class='link cross' d='M1037.0 582 V611.0 H221.0 V634' marker-end='url(#ah)'/><a href='#cA'><rect class='box' x='132' y='76' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='132' y='76' width='3.5' height='62' rx='1.7' fill='var(--lane-capture)'/><text class='bt' x='146' y='101'>360 walks</text><text class='bs' x='146' y='119'>Insta360 X6, one or more sessions</text><text class='bt2' x='298' y='92' text-anchor='end'>9 min</text></a><a href='#cB'><rect class='box' x='336' y='76' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='336' y='76' width='3.5' height='62' rx='1.7' fill='var(--lane-capture)'/><text class='bt' x='350' y='101'>GoPro walks</text><text class='bs' x='350' y='119'>the geometry donors, any number</text><text class='bt2' x='502' y='92' text-anchor='end'>2 min</text></a><a href='#cC'><rect class='box' x='132' y='196' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='132' y='196' width='3.5' height='62' rx='1.7' fill='var(--lane-register)'/><text class='bt' x='146' y='221'>Cube faces and masks</text><text class='bs' x='146' y='239'>pr_cut_faces, pr_mask_faces</text><text class='bt2' x='298' y='212' text-anchor='end'>4 min</text></a><a href='#cD'><rect class='box' x='336' y='196' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='336' y='196' width='3.5' height='62' rx='1.7' fill='var(--lane-register)'/><text class='bt' x='350' y='221'>RealityScan stage 1</text><text class='bs' x='350' y='239'>the 360 backbone</text><text class='bt2' x='502' y='212' text-anchor='end'>10 min</text></a><a href='#cE'><rect class='box' x='540' y='196' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='540' y='196' width='3.5' height='62' rx='1.7' fill='var(--lane-register)'/><text class='bt' x='554' y='221'>RealityScan stage 2</text><text class='bs' x='554' y='239'>GoPro frames added</text><text class='bt2' x='706' y='212' text-anchor='end'>34 min</text></a><a href='#cF'><rect class='box' x='744' y='196' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='744' y='196' width='3.5' height='62' rx='1.7' fill='var(--lane-register)'/><text class='bt' x='758' y='221'>Join by geometry</text><text class='bs' x='758' y='239'>pr_register_orthomaps</text><text class='bt2' x='910' y='212' text-anchor='end'>26 min</text></a><a href='#cG'><rect class='box' x='948' y='196' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='948' y='196' width='3.5' height='62' rx='1.7' fill='var(--lane-register)'/><text class='bt' x='962' y='221'>The merged model</text><text class='bs' x='962' y='239'>one frame, one gauge</text><text class='bt2' x='1114' y='212' text-anchor='end'>4 min</text></a><a href='#cH0'><rect class='box' x='132' y='316' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='132' y='316' width='3.5' height='62' rx='1.7' fill='var(--lane-mesh)'/><text class='bt' x='146' y='341'>Optimise the cameras</text><text class='bs' x='146' y='359'>Metashape, on the merged model</text><text class='bt2' x='298' y='332' text-anchor='end'>2 min</text></a><a href='#cH1'><rect class='box plan' x='336' y='316' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='336' y='316' width='3.5' height='62' rx='1.7' fill='var(--lane-mesh)'/><text class='bt' x='350' y='341'>Drop the bad frames</text><text class='bs' x='350' y='359'>before anything is built</text><text class='bt2' x='502' y='332' text-anchor='end'></text></a><a href='#cH'><rect class='box' x='540' y='316' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='540' y='316' width='3.5' height='62' rx='1.7' fill='var(--lane-mesh)'/><text class='bt' x='554' y='341'>Gaussian splatting</text><text class='bs' x='554' y='359'>RaDe-GS, the radegs container</text><text class='bt2' x='706' y='332' text-anchor='end'>61 min</text></a><a href='#cH2'><rect class='box plan' x='744' y='400' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='744' y='400' width='3.5' height='62' rx='1.7' fill='var(--lane-mesh)'/><text class='bt' x='758' y='425'>Dense cloud</text><text class='bs' x='758' y='443'>in the background, once the check passes</text><text class='bt2' x='910' y='416' text-anchor='end'>26 min</text></a><a href='#cI'><polygon class='check' points='758,316 908,316 922,347.0 908,378 758,378 744,347.0'/><text class='bt' x='766' y='341'>Eyeball check</text><text class='bs' x='766' y='359'>a person decides</text><text class='bt2' x='910' y='332' text-anchor='end'></text></a><a href='#cJ'><rect class='box' x='948' y='316' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='948' y='316' width='3.5' height='62' rx='1.7' fill='var(--lane-mesh)'/><text class='bt' x='962' y='341'>Metric gauge</text><text class='bs' x='962' y='359'>provisional</text><text class='bt2' x='1114' y='332' text-anchor='end'></text></a><a href='#cK'><rect class='box' x='132' y='520' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='132' y='520' width='3.5' height='62' rx='1.7' fill='var(--lane-plan)'/><text class='bt' x='146' y='545'>Find the carrier</text><text class='bs' x='146' y='563'>pd_detect</text><text class='bt2' x='298' y='536' text-anchor='end'>10 min</text></a><a href='#cL'><rect class='box' x='336' y='520' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='336' y='520' width='3.5' height='62' rx='1.7' fill='var(--lane-plan)'/><text class='bt' x='350' y='545'>Confidence region</text><text class='bs' x='350' y='563'>pd_coverage</text><text class='bt2' x='502' y='536' text-anchor='end'>20 s</text></a><a href='#cM'><rect class='box' x='540' y='520' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='540' y='520' width='3.5' height='62' rx='1.7' fill='var(--lane-plan)'/><text class='bt' x='554' y='545'>Hole lattice</text><text class='bs' x='554' y='563'>pd_select</text><text class='bt2' x='706' y='536' text-anchor='end'>3 min</text></a><a href='#cN'><rect class='box' x='744' y='520' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='744' y='520' width='3.5' height='62' rx='1.7' fill='var(--lane-plan)'/><text class='bt' x='758' y='545'>The director</text><text class='bs' x='758' y='563'>pd_direct</text><text class='bt2' x='910' y='536' text-anchor='end'>8 min</text></a><a href='#cO'><rect class='box' x='948' y='520' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='948' y='520' width='3.5' height='62' rx='1.7' fill='var(--lane-plan)'/><text class='bt' x='962' y='545'>Avoid the holes</text><text class='bs' x='962' y='563'>the cost that made it work</text><text class='bt2' x='1114' y='536' text-anchor='end'></text></a><a href='#cP'><rect class='box' x='132' y='640' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='132' y='640' width='3.5' height='62' rx='1.7' fill='var(--lane-deliver)'/><text class='bt' x='146' y='665'>Render</text><text class='bs' x='146' y='683'>pd_render</text><text class='bt2' x='298' y='656' text-anchor='end'>11 min</text></a><a href='#cQ'><rect class='box' x='336' y='640' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='336' y='640' width='3.5' height='62' rx='1.7' fill='var(--lane-deliver)'/><text class='bt' x='350' y='665'>Cast the depth</text><text class='bs' x='350' y='683'>the expensive step</text><text class='bt2' x='502' y='656' text-anchor='end'>89 min</text></a><a href='#cR'><rect class='box' x='540' y='640' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='540' y='640' width='3.5' height='62' rx='1.7' fill='var(--lane-deliver)'/><text class='bt' x='554' y='665'>Verify and measure</text><text class='bs' x='554' y='683'>pd_verify, pd_metrics</text><text class='bt2' x='706' y='656' text-anchor='end'>41 min</text></a><a href='#cS'><rect class='box' x='744' y='640' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='744' y='640' width='3.5' height='62' rx='1.7' fill='var(--lane-deliver)'/><text class='bt' x='758' y='665'>Export the clips</text><text class='bs' x='758' y='683'>what you take away</text><text class='bt2' x='910' y='656' text-anchor='end'>34 min</text></a><a href='#cT'><rect class='box' x='948' y='640' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='948' y='640' width='3.5' height='62' rx='1.7' fill='var(--lane-deliver)'/><text class='bt' x='962' y='665'>Audit</text><text class='bs' x='962' y='683'>five auditors, then refuters</text><text class='bt2' x='1114' y='656' text-anchor='end'>45 min</text></a></svg></div></section>
 <section><div class='lanehead'><span class='bar' style='background:var(--lane-capture)'></span><h3>Capture</h3><p>one or more sessions of the same scene</p></div>
 <div class='cards'>
 <article class='card' id='cA'>
 <div class='top'><span class='id'>A</span><h4>360 walks</h4><span class='chip done'>finished</span></div>
 <div class='id'>Insta360 X6, one or more sessions</div><p>An operator walks the car park with a 360 camera on a pole. Everything the virtual lenses will ever see has to be in these frames, which is why a failed check comes back here instead of being patched downstream - and why the scene is not limited to one walk: a session that missed an aisle, or lit it badly, is answered by another session rather than by a cleverer reconstruction.</p><dl>
+<dt>takes</dt><dd class='t'>9 min stitch + the 8K mp4</dd>
 <dt>sessions so far</dt><dd>1</dd>
 <dt>this one recorded</dt><dd>5,136 frames, 102.7 s at 50 fps</dd>
 <dt>stitched</dt><dd>7,680 x 3,840 per frame</dd>
@@ -116,6 +119,7 @@ a{color:var(--accent)}
 <article class='card' id='cB'>
 <div class='top'><span class='id'>B</span><h4>GoPro walks</h4><span class='chip done'>finished</span></div>
 <div class='id'>the geometry donors, any number</div><p>Bodies carried through the same aisles. Their frames carry the texture detail a 360 pano at 2 Hz cannot, and they are what the surface is built from. Each body is its own camera group with its own lens prior, so a session may bring two, or one, or four - what matters is that they walk the aisles the 360 walked.</p><dl>
+<dt>takes</dt><dd class='t'>2 min both videos to frames</dd>
 <dt>this session</dt><dd>2 bodies (one Linear, one Wide)</dd>
 <dt>frames</dt><dd>1,864 + 1,798 staged</dd>
 <dt>selection</dt><dd>sharpest of every three</dd>
@@ -127,24 +131,28 @@ a{color:var(--accent)}
 <article class='card' id='cC'>
 <div class='top'><span class='id'>C</span><h4>Cube faces and masks</h4><span class='chip done'>finished</span></div>
 <div class='id'>pr_cut_faces, pr_mask_faces</div><p>Each 360 instant becomes six 120 deg faces, and the operator is segmented out of every one so the matcher never keys on a person.</p><dl>
+<dt>takes</dt><dd class='t'>4 min cut + mask, 1236 faces</dd>
 <dt>faces</dt><dd>1,236 at 2 Hz</dd>
 <dt>masked</dt><dd>1,236 faces</dd>
 <dt>output</dt><dd>&lt;work&gt;/faces_s25</dd></dl></article>
 <article class='card' id='cD'>
 <div class='top'><span class='id'>D</span><h4>RealityScan stage 1</h4><span class='chip done'>finished</span></div>
 <div class='id'>the 360 backbone</div><p>The faces align into one rigid walk. This is the backbone: every later step is expressed in its frame.</p><dl>
+<dt>takes</dt><dd class='t'>10 min RealityScan, 1236 faces</dd>
 <dt>registered</dt><dd>1,093 of 1,236 faces</dd>
 <dt>took</dt><dd>9.6 min</dd>
 <dt>output</dt><dd>&lt;work&gt;/rc/stage1</dd></dl></article>
 <article class='card' id='cE'>
 <div class='top'><span class='id'>E</span><h4>RealityScan stage 2</h4><span class='chip done'>finished</span></div>
 <div class='id'>GoPro frames added</div><p>The GoPro frames are aligned against the locked backbone. They registered well but into a component of their own: not one feature match crossed the two cameras.</p><dl>
+<dt>takes</dt><dd class='t'>34 min RealityScan, +3662 frames</dd>
 <dt>registered</dt><dd>3,455 frames</dd>
 <dt>joined the backbone</dt><dd>no</dd>
 <dt>output</dt><dd>&lt;work&gt;/rc/stage2</dd></dl></article>
 <article class='card' id='cF'>
 <div class='top'><span class='id'>F</span><h4>Join by geometry</h4><span class='chip done'>finished</span></div>
 <div class='id'>pr_register_orthomaps</div><p>Since matching refused, the two dense clouds are joined instead: SIFT on their floor orthomaps, lifted with gravity, then ICP with scale. Metashape&#x27;s own cross-set matching was run as an independent check.</p><dl>
+<dt>takes</dt><dd class='t'>26 min 2 dense clouds + the fit</dd>
 <dt>scale</dt><dd>0.6117</dd>
 <dt>residual</dt><dd>median 0.044 u</dd>
 <dt>cross-check</dt><dd>scale 0.6111, centres within 0.117 u</dd>
@@ -152,6 +160,7 @@ a{color:var(--accent)}
 <article class='card' id='cG'>
 <div class='top'><span class='id'>G</span><h4>The merged model</h4><span class='chip done'>finished</span></div>
 <div class='id'>one frame, one gauge</div><p>Both walks in a single COLMAP model, plus the rig pose of every 360 instant. Everything downstream reads these poses.</p><dl>
+<dt>takes</dt><dd class='t'>4 min export for the mesh lane</dd>
 <dt>cameras</dt><dd>4,548</dd>
 <dt>points</dt><dd>2,492,211</dd>
 <dt>gravity spread</dt><dd>median 0.39 deg</dd>
@@ -161,14 +170,17 @@ a{color:var(--accent)}
 <div class='cards'>
 <article class='card' id='cH2'>
 <div class='top'><span class='id'>H2</span><h4>Dense cloud</h4><span class='chip plan'>next run</span></div>
-<div class='id'>in the background, once the check passes</div><p>A dead end on purpose. The dense cloud is a second opinion on the geometry and the surface the floor gauge was read from, and nothing downstream consumes it: the depth comes from the splat, the planning from the mesh and the poses. It starts once the check has passed - there is no point densifying a surface the photographs disagree with - and runs in the background while the main line goes on to the gauge and the director.</p><dl>
+<div class='id'>in the background, once the check passes</div><p>A dead end on purpose. This is the MERGED model densified - distinct from the per-component clouds the join built earlier to find its similarity - and it exists as a second opinion on the geometry and as the surface the floor gauge is read from. Nothing downstream consumes it: the depth comes from the splat, the planning from the mesh and the poses. It starts once the check has passed - there is no point densifying a surface the photographs disagree with - and runs in the background while the main line goes on to the gauge and the director.</p><dl>
+<dt>takes</dt><dd class='t'>26 min in the background</dd>
 <dt>starts</dt><dd>when the eyeball check passes, not before</dd>
 <dt>feeds</dt><dd>nothing: no later step waits for it or reads it</dd>
+<dt>not the same as</dt><dd>the two component clouds the join needed, which are built before it</dd>
 <dt>why not earlier</dt><dd>one 24 GB card - beside the splat both jobs slow down and can run out of memory</dd>
 <dt>output</dt><dd>&lt;work&gt;/metashape_gopro/dense.ply</dd></dl></article>
 <article class='card' id='cH0'>
 <div class='top'><span class='id'>H0</span><h4>Optimise the cameras</h4><span class='chip done'>finished</span></div>
 <div class='id'>Metashape, on the merged model</div><p>The registered cameras are re-optimised before anything is built from them: intrinsics and poses are refined against the tie points, and the result is exported as a COLMAP model without writing the images again.</p><dl>
+<dt>takes</dt><dd class='t'>2 min Metashape optimise</dd>
 <dt>cameras</dt><dd>3,455 imported, 3,391 aligned after</dd>
 <dt>tie points</dt><dd>458,076</dd>
 <dt>feeds</dt><dd>the splatting lane, not a second mesh</dd>
@@ -176,6 +188,7 @@ a{color:var(--accent)}
 <article class='card' id='cH1'>
 <div class='top'><span class='id'>H1</span><h4>Drop the bad frames</h4><span class='chip plan'>next run</span></div>
 <div class='id'>before anything is built</div><p>A frame whose pose is wrong poisons whatever is built from it, and it is cheapest to remove before the surface exists. The cut is made on the optimised model - reprojection error, reconstruction uncertainty, and a pose that disagrees with its neighbours along the walk.</p><dl>
+<dt>takes</dt><dd class='t'>minutes, on CPU</dd>
 <dt>criterion</dt><dd>to be fixed with the next capture</dd>
 <dt>candidates today</dt><dd>the 1.8 % of tie points beyond 60 u, and the frames the verifier flags</dd>
 <dt>runs on</dt><dd>CPU, so it costs the GPU nothing</dd>
@@ -183,6 +196,7 @@ a{color:var(--accent)}
 <article class='card' id='cH'>
 <div class='top'><span class='id'>H</span><h4>Gaussian splatting</h4><span class='chip done'>finished</span></div>
 <div class='id'>RaDe-GS, the radegs container</div><p>The surface comes from the splatting lane, not from the photogrammetry tool: it trains on the GoPro views and extracts a mesh. A second run on Metashape-optimised poses is the one in production.</p><dl>
+<dt>takes</dt><dd class='t'>61 min train + mesh + colour</dd>
 <dt>run 1</dt><dd>PSNR 25.67, 22,258,370 faces</dd>
 <dt>run 2</dt><dd>PSNR 24.85, 22,958,697 faces</dd>
 <dt>wall</dt><dd>1.0 h</dd>
@@ -190,6 +204,7 @@ a{color:var(--accent)}
 <article class='card' id='cI'>
 <div class='top'><span class='id'>I</span><h4>Eyeball check</h4><span class='chip done'>finished</span></div>
 <div class='id'>a person decides</div><p>The only step a person performs. The tools render the material - the mesh seen from each registered camera beside the photograph it should match, the edge overlays, and the two meshes against each other - and then someone looks at it and decides. There is no threshold and no automatic pass, because what disqualifies a reconstruction is recognising that a wall sits where no wall is, which is a judgement, not a number.</p><dl>
+<dt>takes</dt><dd class='t'>minutes to render, then a person looks</dd>
 <dt>decided by</dt><dd>a person, on the rendered comparisons</dd>
 <dt>what they see</dt><dd>12 camera views, photo beside mesh, plus the edge overlays</dd>
 <dt>the numbers beside it</dt><dd>range difference 0.62 % median, 92.1 % of pixels within 5 %</dd>
@@ -199,6 +214,7 @@ a{color:var(--accent)}
 <article class='card' id='cJ'>
 <div class='top'><span class='id'>J</span><h4>Metric gauge</h4><span class='chip opt'>provisional</span></div>
 <div class='id'>provisional</div><p>Model units are arbitrary. The gauge is read off the floor itself: the pitch of the bay separators, found by Hough segments and an autocorrelation, set to a standard bay width.</p><dl>
+<dt>takes</dt><dd class='t'>minutes, once per scene</dd>
 <dt>gauge</dt><dd>0.6579 m per unit</dd>
 <dt>from</dt><dd>bay pitch 3.80 u = 2.5 m</dd>
 <dt>cross-check</dt><dd>clear height 2.52 m</dd>
@@ -209,18 +225,21 @@ a{color:var(--accent)}
 <article class='card' id='cK'>
 <div class='top'><span class='id'>K</span><h4>Find the carrier</h4><span class='chip done'>finished</span></div>
 <div class='id'>pd_detect</div><p>A segmentation pass over every source frame records where people are on the sphere, so the planner can steer the virtual lens away from the one who carries the camera.</p><dl>
+<dt>takes</dt><dd class='t'>10 min 5136 frames, once per capture</dd>
 <dt>frames</dt><dd>5,136 at 8.2 fps</dd>
 <dt>grid</dt><dd>1 deg on the sphere</dd>
 <dt>output</dt><dd>&lt;pd&gt;/vehicle_sets/detect</dd></dl></article>
 <article class='card' id='cL'>
 <div class='top'><span class='id'>L</span><h4>Confidence region</h4><span class='chip done'>finished</span></div>
 <div class='id'>pd_coverage</div><p>Where the scan actually went, grown by five metres. A view that leaves this region within the depth cap is looking at the edge of what was ever measured.</p><dl>
+<dt>takes</dt><dd class='t'>20 s once per scene</dd>
 <dt>region</dt><dd>518 m2</dd>
 <dt>from</dt><dd>4,753 scan positions + 5 m</dd>
 <dt>output</dt><dd>&lt;pd&gt;/coverage</dd></dl></article>
 <article class='card' id='cM'>
 <div class='top'><span class='id'>M</span><h4>Hole lattice</h4><span class='chip done'>finished</span></div>
 <div class='id'>pd_select</div><p>The mesh is cast once per source frame over a half-degree lattice, so the planner knows, for any direction, whether the surface is there, how far it is, and whether a downward ray would fall through the floor.</p><dl>
+<dt>takes</dt><dd class='t'>3 min once per mesh, all lenses</dd>
 <dt>lattice</dt><dd>5136 x 361 x 720</dd>
 <dt>built in</dt><dd>3.5 min</dd>
 <dt>floor holes</dt><dd>12.3 % of the region&#x27;s floor</dd>
@@ -228,6 +247,7 @@ a{color:var(--accent)}
 <article class='card' id='cN'>
 <div class='top'><span class='id'>N</span><h4>The director</h4><span class='chip done'>finished</span></div>
 <div class='id'>pd_direct</div><p>Every 30 s window of the walk is planned on its own: a smooth yaw path per pitch, scored on seven criteria per frame, then the windows that overlap least are chosen. Each window is planned many times over, so one moment yields many clips.</p><dl>
+<dt>takes</dt><dd class='t'>8 min per lens</dd>
 <dt>windows</dt><dd>73, 72 of them &gt;= 95 % good</dd>
 <dt>renderings</dt><dd>4 passes x 5 phases = 20 per window</dd>
 <dt>separation</dt><dd>axes &gt;= 5 deg apart at every instant</dd>
@@ -235,6 +255,7 @@ a{color:var(--accent)}
 <article class='card' id='cO'>
 <div class='top'><span class='id'>O</span><h4>Avoid the holes</h4><span class='chip done'>finished</span></div>
 <div class='id'>the cost that made it work</div><p>Views are pushed away from mesh holes and from the region&#x27;s edge. Measured on one lens, the frames that leak through the floor fall by a fifth, and the frames with no carrier-free direction fall to none.</p><dl>
+<dt>takes</dt><dd class='t'>inside the planning above</dd>
 <dt>leaky frames</dt><dd>266 -&gt; 206</dd>
 <dt>no free yaw</dt><dd>58 -&gt; 0</dd>
 <dt>unavoidable</dt><dd>184 frames</dd>
@@ -245,24 +266,28 @@ a{color:var(--accent)}
 <article class='card' id='cP'>
 <div class='top'><span class='id'>P</span><h4>Render</h4><span class='chip done'>finished</span></div>
 <div class='id'>pd_render</div><p>The planned views are cut out of the 8K pano through the vehicle lens model, one registered image per frame.</p><dl>
+<dt>takes</dt><dd class='t'>11 min per lens, 60 clips</dd>
 <dt>rate</dt><dd>25.7 views/s</dd>
 <dt>per clip</dt><dd>11 s</dd>
 <dt>output</dt><dd>&lt;lens&gt;/direct_p5/render</dd></dl></article>
 <article class='card' id='cQ'>
 <div class='top'><span class='id'>Q</span><h4>Cast the depth</h4><span class='chip done'>finished</span></div>
 <div class='id'>the expensive step</div><p>Each view&#x27;s range map is cast from the mesh along the lens&#x27;s own rays, so the depth is the fisheye&#x27;s, not a pinhole&#x27;s reprojected.</p><dl>
+<dt>takes</dt><dd class='t'>89 min per lens - the GPU bill</dd>
 <dt>rate</dt><dd>3.24 views/s</dd>
 <dt>per clip</dt><dd>89 s, three quarters of the cost</dd>
 <dt>output</dt><dd>&lt;lens&gt;/direct_p5/depth</dd></dl></article>
 <article class='card' id='cR'>
 <div class='top'><span class='id'>R</span><h4>Verify and measure</h4><span class='chip done'>finished</span></div>
 <div class='id'>pd_verify, pd_metrics</div><p>Every rendered frame is checked for people again, and measured: how much of the image carries a label, how sharp, how exposed, how far.</p><dl>
+<dt>takes</dt><dd class='t'>41 min per lens</dd>
 <dt>checked</dt><dd>every frame of every clip</dd>
 <dt>per clip</dt><dd>27 s verify, 14 s metrics</dd>
 <dt>output</dt><dd>&lt;lens&gt;/direct_p5/verify</dd></dl></article>
 <article class='card' id='cS'>
 <div class='top'><span class='id'>S</span><h4>Export the clips</h4><span class='chip run'>running</span></div>
 <div class='id'>what you take away</div><p>Each rendering becomes a folder: the frames, the range maps with far surfaces and floor leaks masked out, its own registered model, and the per-frame criteria.</p><dl>
+<dt>takes</dt><dd class='t'>34 min per lens</dd>
 <dt>exported</dt><dd>180 renderings, 52,188 frames</dd>
 <dt>lenses finished</dt><dd>3 of 4</dd>
 <dt>per clip</dt><dd>34 s</dd>
@@ -270,6 +295,7 @@ a{color:var(--accent)}
 <article class='card' id='cT'>
 <div class='top'><span class='id'>T</span><h4>Audit</h4><span class='chip done'>finished</span></div>
 <div class='id'>five auditors, then refuters</div><p>The delivered files are measured independently: floor flatness, agreement between renderings, poses against the registration, and whether any frame shows the carrier. Every claimed defect is re-measured by someone trying to refute it.</p><dl>
+<dt>takes</dt><dd class='t'>45 min of agents, ad hoc</dd>
 <dt>floor</dt><dd>flat to 7.3 mm, level to 0.41 deg</dd>
 <dt>two renderings, one instant</dt><dd>agree to 2.5 mm</dd>
 <dt>carrier visible</dt><dd>in no frame</dd>
@@ -277,5 +303,5 @@ a{color:var(--accent)}
 <dt>output</dt><dd>MOD_PostDirector/notes/scenecap_0913_qa_byd_sq_back.json</dd></dl></article>
 </div></section>
 <section><h2>What a reader should distrust</h2><p class='note'>The metric scale is provisional: every metre on this page follows from reading the bay-separator pitch as 2.5 m, and a tape measure in the garage would fix it in an afternoon. The mesh carries one crater in the floor, about two metres across, that the walk crosses three times. And the clip models declare <code>OPENCV_FISHEYE</code>, whose reference implementation cannot evaluate the outer sixth of a 206 deg lens, so the depth there is correct but standard tooling will not reproduce it.</p></section>
-<div class='foot'>Built from the tools' own JSON by <code>pr_flow_page.py</code>; no figure on this page was typed by hand. 2026-09-15 16:09.</div>
+<div class='foot'>Built from the tools' own JSON by <code>pr_flow_page.py</code>; no figure on this page was typed by hand. 2026-09-15 16:14.</div>
 </main></body></html>
