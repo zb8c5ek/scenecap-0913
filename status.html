@@ -1,0 +1,141 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>SceneCap 0913 — clip production status</title></head><body><style>
+:root{--ground:#f3f5f7;--panel:#fff;--ink:#1a222c;--ink-2:#566371;--rule:#d6dce3;--accent:#1f6f8b;--accent-bg:#e3eef3;
+ --good:#176e47;--good-bg:#e3f3ea;--warn:#94500f;--warn-bg:#f8ecdf;--bad:#b23a3a;--bad-bg:#f7e4e4;--mono-bg:#eaeef2;
+ --shadow:0 1px 2px rgba(20,30,40,.08);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ground:#131a21;--panel:#1b232c;--ink:#e5eaef;--ink-2:#98a5b2;
+ --rule:#2e3944;--accent:#6fb7d3;--accent-bg:#1b2f3a;--good:#5cc48f;--good-bg:#16302a;--warn:#e0a05c;--warn-bg:#3a2a18;
+ --bad:#e07a7a;--bad-bg:#3b2222;--mono-bg:#222c36;--shadow:0 1px 2px rgba(0,0,0,.4);color-scheme:dark}}
+:root[data-theme="dark"]{--ground:#131a21;--panel:#1b232c;--ink:#e5eaef;--ink-2:#98a5b2;--rule:#2e3944;--accent:#6fb7d3;
+ --accent-bg:#1b2f3a;--good:#5cc48f;--good-bg:#16302a;--warn:#e0a05c;--warn-bg:#3a2a18;--bad:#e07a7a;--bad-bg:#3b2222;
+ --mono-bg:#222c36;--shadow:0 1px 2px rgba(0,0,0,.4);color-scheme:dark}
+body{background:var(--ground);color:var(--ink);font-family:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;font-size:15px;line-height:1.55;margin:0}
+main{max-width:940px;margin:0 auto;padding:36px 26px 70px}
+h1,h2,h3{text-wrap:balance;line-height:1.2;margin:0}
+h1{font-size:27px;font-weight:600;letter-spacing:-.01em}
+h2{font-size:18px;font-weight:600;margin-top:42px;padding-top:15px;border-top:1px solid var(--rule)}
+p{max-width:76ch;margin:9px 0}
+.eyebrow{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
+.meta{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:12.5px;color:var(--ink-2);margin-top:12px}
+code{font-family:"IBM Plex Mono",Consolas,monospace;font-size:12.5px;background:var(--mono-bg);padding:1px 5px;border-radius:3px}
+.verdict{border-left:3px solid var(--warn);background:var(--warn-bg);padding:12px 16px;border-radius:0 6px 6px 0;margin:18px 0 6px}
+.verdict.good{border-color:var(--good);background:var(--good-bg)}
+.verdict p{margin:4px 0;max-width:80ch}.verdict b{font-weight:600}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:18px 0 4px}
+.tile{background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:11px 13px;box-shadow:var(--shadow)}
+.tile .k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.tile .v{font-family:"IBM Plex Mono",monospace;font-size:22px;font-weight:500;margin-top:3px;font-variant-numeric:tabular-nums}
+.tile .s{font-size:12px;color:var(--ink-2);margin-top:3px}
+.tablewrap{overflow-x:auto;margin:12px 0}
+table{border-collapse:collapse;width:100%;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
+td.n,th.n{text-align:right}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11.5px;padding:2px 7px;border-radius:3px;background:var(--accent-bg);color:var(--accent);white-space:nowrap}
+.chip.good{background:var(--good-bg);color:var(--good)}.chip.warn{background:var(--warn-bg);color:var(--warn)}
+.chip.bad{background:var(--bad-bg);color:var(--bad)}.chip.idle{background:var(--mono-bg);color:var(--ink-2)}
+ul{padding-left:19px;max-width:82ch}li{margin:6px 0}
+ul.tight li{margin:4px 0}
+.note{font-size:13px;color:var(--ink-2)}
+pre{background:var(--mono-bg);border-radius:6px;padding:11px 13px;overflow-x:auto;font-family:"IBM Plex Mono",Consolas,monospace;font-size:12px;line-height:1.5;margin:10px 0}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:14px 0}
+.opt{background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:13px 15px;box-shadow:var(--shadow)}
+.opt.pick{border-color:var(--accent);border-width:2px}
+.opt h3{font-size:14.5px;margin-bottom:4px}.opt p{font-size:13px;margin:6px 0;max-width:none}
+.opt .cost{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--ink-2)}
+.journal{list-style:none;padding:0;max-width:none}
+.journal li{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:5px 0;border-bottom:1px solid var(--rule);font-size:13px}
+.journal li time{font-family:"IBM Plex Mono",monospace;color:var(--ink-2);font-size:12px}
+a{color:var(--accent)}
+</style>
+<main>
+<div class='eyebrow'>Bereich-SceneDepth · MOD_PostDirector · director run</div><h1>SceneCap 0913 — clip production status</h1>
+<div class='meta'><span>built 2026-09-15 10:25</span><span>run <code>G:\0913SceneCapDepth_work\postdirector\vehicle_sets</code></span><span>log <code>run_direct_p5_stdout.log</code>, last line 03:21:10</span></div>
+<div class='verdict'><p><b>The overnight production run was killed at 03:23 after two of four lenses. Nothing crashed, and the method held up: both lenses that ran produced the plans we wanted.</b></p><p>What was lost is one lens's imagery, and it was lost to a missing flag rather than to the run stopping. <code>run_direct.py</code> had no way to pass the carrier-only rule to the verifier, so distant people at the far end of the aisle counted as confident hits. Round 2 fed them back as hard constraints and re-planned around them: on seres_f3_right the candidate windows fell from 72 to 18 and the clips from 3 to 1, and the prune deleted 17 310 of round 1's 17 314 range maps.</p><p>byd_sq_back lost nothing. The kill landed during its round-2 planning, before any prune, so all 17 434 rendered views and their range maps are intact and its round 1 stands recorded as a complete 3-clip result. Its clips are being exported from disk right now - about 70 minutes, no GPU, no re-render.</p><p>No file records who ended the run: the driver's error log is empty, there is no traceback anywhere, and both log files were still open when the processes stopped, so the process tree was torn down mid-step rather than failing. The session that launched it is no longer alive, which fits, but nothing on disk says so.</p></div>
+<div class='tiles'>
+<div class='tile'><div class='k'>Lenses delivered</div><div class='v'>2 of 4</div><div class='s'>a lens counts when its clips hold frames and range maps</div></div>
+<div class='tile'><div class='k'>Clips exported</div><div class='v'>2</div><div class='s'>of 12 planned (3 per lens)</div></div>
+<div class='tile'><div class='k'>Frames + range maps</div><div class='v'>6,613</div><div class='s'>6,612 range maps; 30 s at 10 Hz per rendering</div></div>
+<div class='tile'><div class='k'>Rendered, not exported</div><div class='v'>15,753</div><div class='s'>views on disk that no clip folder holds yet</div></div>
+<div class='tile'><div class='k'>Ran for</div><div class='v'>7.4 h</div><div class='s'>19:57:14 to 03:21:10; 5.2 h of it inside the 12 measured stages</div></div>
+</div>
+<h2>Where each lens stands</h2><div class='tablewrap'><table><tr><th>lens</th><th>state</th><th class='n'>clips</th><th class='n'>renderings</th><th class='n'>frames</th><th class='n'>range maps</th><th>windows / good frames</th></tr>
+<tr><td><code>seres_f3_right</code><div class='note'>27-57 s pitch +2.5°</div></td><td><span class='chip good'>delivered</span></td><td class='n'>1</td><td class='n'>18</td><td class='n'>4,932</td><td class='n'>4,932</td><td>18 of 73 windows ≥ 95 % good (round 2)</td></tr>
+<tr><td><code>byd_sq_back</code><div class='note'>4-34 s pitch -2.5°</div></td><td><span class='chip good'>delivered</span></td><td class='n'>1</td><td class='n'>60</td><td class='n'>1,681</td><td class='n'>1,680</td><td>72 of 73 windows ≥ 95 % good (round 1)</td></tr>
+<tr><td><code>chery_ehy_left</code><div class='note'>—</div></td><td><span class='chip idle'>not started</span></td><td class='n'>0</td><td class='n'>—</td><td class='n'>0</td><td class='n'>0</td><td>—</td></tr>
+<tr><td><code>jianghuai_x6s_front</code><div class='note'>—</div></td><td><span class='chip idle'>not started</span></td><td class='n'>0</td><td class='n'>—</td><td class='n'>0</td><td class='n'>0</td><td>—</td></tr>
+</table></div>
+<p class='note'>Renderings are the separate views of one clip: 4 passes × 5 phases = 20 per clip, every pair of viewing axes at least 5° apart at every instant. Frames and range maps are what a clip folder actually holds.</p>
+<h2>What happened overnight</h2><ul>
+<li><b>19:57</b> the run started on the four sheet lenses: 3 clips &times; 4 passes &times; 5 phases each, pitches &minus;2.5 / 0 / +2.5&deg;, viewing axes at least 5&deg; apart, two rounds.</li>
+<li><b>seres_f3_right round 1</b> (to 23:04) was the result we wanted: clips at 4-34, 35-65 and 72-102 s, good frames 99.7 / 100 / 99.7 %, 20 renderings each with axes 5.1-6.0&deg; apart, 17 314 views rendered with range maps.</li>
+<li><b>The verifier ran without the carrier rule.</b> <code>run_direct.py</code> built a fixed argument list for <code>pd_verify</code>, so it used the default <code>--min_area_frac 0.0</code>. Of its 27 confident hits, 25 cover 0.02-0.05 % of the frame - people at the far end of the aisle - and 2 are the operator reflected in a car window.</li>
+<li><b>Round 2 fed all 27 back</b> over 151 frames, dilated to 3 171 frame updates, and re-planned around them. Three clips became one, and the prune removed round 1's imagery. Round 1 now exists only as numbers in the summary and the journal.</li>
+<li><b>byd_sq_back round 1</b> (to 03:21) repeated the good result - 3 clips, 100 / 100 / 99.7 % good, 17 434 views - then entered round 2, where the run ended at 03:23 with no error of any kind.</li>
+<li><b>A second defect</b> means the carrier flag alone would not have saved it: <code>pd_verify</code> measures a detection's box against the whole frame including the black ring outside the fisheye circle, so an edge artefact scores 5-9 % while a real distant person scores 0.03 %. On byd_sq_back 15 such artefacts sit above the 0.5 % bar. Until that is measured inside the valid mask, the setting to use is one round.</li>
+<li><b>chery_ehy_left</b> and <b>jianghuai_x6s_front</b> were never reached.</li>
+<li><b>The follower session</b> found the flag defect, fixed it, measured the damage and wrote it all down before it ended. Its fix is on its own branch, not yet on main.</li>
+</ul>
+<div class='tablewrap'><table><tr><th>seres_f3_right</th><th class='n'>round 1</th><th class='n'>round 2</th></tr><tr><td>clips selected</td><td class='n'>3</td><td class='n'>1</td></tr><tr><td>candidate windows (of 73)</td><td class='n'>72</td><td class='n'>18</td></tr><tr><td>median window good fraction</td><td class='n'>100 %</td><td class='n'>89 %</td></tr><tr><td>views rendered</td><td class='n'>17,314</td><td class='n'>4,932</td></tr><tr><td>verifier hits (confident)</td><td class='n'>200 (27)</td><td class='n'>177 (27)</td></tr></table></div>
+<h2>What one lens costs</h2>
+<p>Measured on the two lenses that completed a round at production size (17 314 and 17 434 views). One lens is one round of 3 clips &times; 20 renderings.</p>
+<div class='tablewrap'><table><tr><th class=''>stage</th><th class='n'>minutes</th><th class='n'>rate</th><th class=''>what it does</th></tr>
+<tr><td class=''>planning (director)</td><td class='n'>7.6</td><td class='n'>—</td><td class=''>73 windows &times; 3 pitches &times; 4 passes &times; 5 phases, then the clip choice</td></tr>
+<tr><td class=''>render</td><td class='n'>11.1</td><td class='n'>26.1 views/s</td><td class=''>fisheye views cut from the 8K pano, GPU</td></tr>
+<tr><td class=''>depth</td><td class='n'>89.5</td><td class='n'>3.24 views/s</td><td class=''>range cast from the mesh per view, GPU — the only stage that keeps the GPU busy</td></tr>
+<tr><td class=''>verify</td><td class='n'>27.5</td><td class='n'>10.5 views/s</td><td class=''>YOLO over every rendered frame</td></tr>
+<tr><td class=''>clip metrics</td><td class='n'>46.8</td><td class='n'>6.2 views/s</td><td class=''>measured coverage, sharpness, exposure per view, single thread</td></tr>
+<tr><td class=''>export</td><td class='n'>≈ 72</td><td class='n'>4.0 views/s</td><td class=''>copy frames, re-encode range maps with the far and floor-leak masks, single thread</td></tr>
+<tr><td class=''><b>one lens</b></td><td class='n'><b>≈ 255 (4.2 h)</b></td><td class='n'>—</td><td class=''><b>three lenses ≈ 12.7 h, four ≈ 17 h, one at a time on the one GPU</b></td></tr>
+</table></div>
+<p class='note'>Worth noting where the time actually goes: clip metrics and export together (119 min) cost more than the depth cast (90 min), and both are single-threaded loops over 17 400 independent views. The export also writes a private copy of the scene model into every clip folder - 311 MB of the 853 MB a finished rendering occupies, 19 GB per lens that could be one shared file.</p>
+<h2>What to do next</h2>
+<p>The planning method is validated twice over. What is missing is one clean pass of render and depth per lens, with two flags set. Everything below keeps your settings: 30 s at 10 Hz, 5 phases, 4 passes, axes 5&deg; apart, pitches &plusmn;2.5&deg;, depth cap 10 m.</p>
+<div class='opts'>
+<div class='opt'><h3>1. Export byd_sq_back from disk</h3><p>Running since 10:13, about 76 s per rendering, so it finishes around 11:30. Its 60 clip/pass folders are being filled from the renders that survived; nothing is recomputed. Recovers 3 clips &times; 20 renderings = 17 434 frames and range maps.</p><p class='cost'>about 76 min, no GPU, 51 GB (G: has 2.1 TB free)</p></div>
+<div class='opt pick'><h3>2. Re-run the other three lenses — recommended</h3><p>seres_f3_right has to be redone because round 2 pruned its imagery; chery_ehy_left and jianghuai_x6s_front were never started. One round each, with <code>--rounds 1</code> and <code>--verify_args "--min_area_frac 0.005"</code>.</p><p class='cost'>≈ 4.2 h per lens, ≈ 12.7 h for the three, one at a time</p></div>
+<div class='opt'><h3>3. Speed up the two single-threaded stages first</h3><p>Clip metrics and export are per-view loops with no shared state; spreading them over the CPU is a small, testable change in <code>run_direct.py</code>. It would come out of the 4.2 h per lens, not add to it.</p><p class='cost'>about an hour of work, saves up to ≈ 4 h over three lenses</p></div>
+<div class='opt'><h3>4. Trim the job</h3><p>If 60 renderings per lens is more than you need, 10 per clip instead of 20 halves render, depth, verify, metrics and export. The planner already proves every window supports 20 at 5&deg; separation, so this is purely a volume choice.</p><p class='cost'>halves every stage after planning</p></div>
+</div>
+<pre>$PY MOD_PostDirector/run_direct.py --run G:/0913SceneCapDepth_work/postdirector/vehicle_sets \
+    --video G:/0913SceneCapDepth/pano_video/VID_20260913_150607_00_011_8k_flowstate.mp4 \
+    --frame_poses G:/0913SceneCapDepth_work/frame_poses_metric_provisional.csv \
+    --model_points G:/0913SceneCapDepth_work/colmap/merged_geo_metric_provisional/sparse/0 \
+    --mesh G:/0722_NaiveGS_and_Gaussian/runs/scenecap0913_ms/recon_colored_metric_provisional.ply \
+    --calib MOD_PostDirector/calibs/seres_f3_right.json MOD_PostDirector/calibs/chery_ehy_left.json MOD_PostDirector/calibs/jianghuai_x6s_front.json \
+    --lattice G:/0913SceneCapDepth_work/postdirector/select_lattice_metric \
+    --tolerances MOD_PostDirector/tolerances/tol_metric_10m_floor.json \
+    --n_clips 3 --clip_len 30 --rate 10 --good_min 0.9 --passes 4 --pitches -2.5 0 2.5 --rounds 1 \
+    --direct_args &quot;--phases 5 --pass_sep 5 --min_person_height_deg 30 --unit_m 1&quot; \
+    --verify_args &quot;--min_area_frac 0.005&quot; --depth_python $PY --direct_name direct_p5</pre>
+<ul class='tight'><li><b>The consolidation is done.</b> PR #5 now carries this session's work and the follower's five commits, including the <code>--verify_args</code> fix that the re-run depends on. It has to reach main before the re-run starts, or the run would repeat the same mistake.</li><li>Worth fixing while the GPU is busy: <code>pd_verify</code> should measure a detection's area inside the valid mask. That is what would make <code>--rounds 2</code> safe again, and it is the reason the re-run uses one round.</li></ul>
+<h2>Stages the run completed</h2><div class='tablewrap'><table><tr><th>lens</th><th class='n'>round</th><th>stage</th><th class='n'>start</th><th class='n'>end</th><th class='n'>min</th></tr>
+<tr><td><code>seres_f3_right</code></td><td class='n'>1</td><td>direct</td><td class='n'>19:57:14</td><td class='n'>20:05:06</td><td class='n'>7.9</td></tr>
+<tr><td><code>seres_f3_right</code></td><td class='n'>1</td><td>render</td><td class='n'>20:05:06</td><td class='n'>20:16:53</td><td class='n'>11.8</td></tr>
+<tr><td><code>seres_f3_right</code></td><td class='n'>1</td><td>depth</td><td class='n'>20:16:53</td><td class='n'>21:48:48</td><td class='n'>91.9</td></tr>
+<tr><td><code>seres_f3_right</code></td><td class='n'>1</td><td>verify</td><td class='n'>21:48:48</td><td class='n'>22:15:56</td><td class='n'>27.1</td></tr>
+<tr><td><code>seres_f3_right</code></td><td class='n'>2</td><td>direct</td><td class='n'>23:03:55</td><td class='n'>23:11:26</td><td class='n'>7.5</td></tr>
+<tr><td><code>seres_f3_right</code></td><td class='n'>2</td><td>render</td><td class='n'>23:11:26</td><td class='n'>23:15:01</td><td class='n'>3.6</td></tr>
+<tr><td><code>seres_f3_right</code></td><td class='n'>2</td><td>depth</td><td class='n'>23:17:16</td><td class='n'>23:41:56</td><td class='n'>24.7</td></tr>
+<tr><td><code>seres_f3_right</code></td><td class='n'>2</td><td>verify</td><td class='n'>23:41:56</td><td class='n'>23:49:34</td><td class='n'>7.6</td></tr>
+<tr><td><code>byd_sq_back</code></td><td class='n'>1</td><td>direct</td><td class='n'>00:22:55</td><td class='n'>00:30:10</td><td class='n'>7.2</td></tr>
+<tr><td><code>byd_sq_back</code></td><td class='n'>1</td><td>render</td><td class='n'>00:30:10</td><td class='n'>00:40:36</td><td class='n'>10.4</td></tr>
+<tr><td><code>byd_sq_back</code></td><td class='n'>1</td><td>depth</td><td class='n'>00:40:36</td><td class='n'>02:07:35</td><td class='n'>87.0</td></tr>
+<tr><td><code>byd_sq_back</code></td><td class='n'>1</td><td>verify</td><td class='n'>02:07:35</td><td class='n'>02:35:29</td><td class='n'>27.9</td></tr>
+<tr><td><code>byd_sq_back</code></td><td class='n'>2</td><td>direct</td><td class='n'>03:21:10</td><td class='n'>never finished</td><td class='n'>—</td></tr>
+</table></div>
+<h2>Last entries in the journal</h2><ul class='journal'>
+<li><time>03:21</time><span>byd_sq_back verification: 600 hits of 17434 frames, 46 confident. 15 of the 46 are at or above the 0.5 % carrier threshold, the largest 8.6 % of the frame - and they are NOT people: verify/hit_c1p10_f000754.jpg shows a person 0.50 box on the right frame edge straddling the fisheye image circle, almost all of it over the black region outside the lens. pd_verify.py:100 measures box area over the whole frame without the valid mask (pd_verify.py:40 applies it only later, for anchoring), so --min_area_frac 0.005 is backwards for this failure mode: it keeps the border artefact and drops the genuine 0.03 % distant person. Consequence for the re-run: the carrier flag alone would not stop round 2 firing on this lens, so --rounds 1 is the setting to use until pd_verify measures area inside the valid mask. Round 2 started and will collapse this lens the way it collapsed seres_f3_right (3 clips -&gt; 1).</span></li>
+<li><time>09:58</time><span>Production run found stopped: no process of it is alive, the GPU is idle, and the driver log ends at 03:21 with byd_sq_back round 2 starting (its lens log runs to 03:23:23). No crash anywhere - the driver&#x27;s stderr is 0 bytes, no traceback, no CUDA or memory error in any step log, and both open log files were never closed, i.e. the process tree was torn down mid-step. Two of four lenses were processed: seres_f3_right (final round 2, 1 clip of 18 renderings, 4932 frames + 4932 range maps exported) and byd_sq_back (round 1 complete, 17434 views rendered with range maps, clips not exported). chery_ehy_left and jianghuai_x6s_front were never started.</span></li>
+<li><time>10:13</time><span>byd_sq_back&#x27;s clips exported from the renders that survived (scratchpad/export_byd.py calls run_direct.export_clips directly; no re-render, no GPU): 60 clip/pass units of clip1 4-34 s, clip2 35-65 s, clip3 72-102 s. Verified before launch that all 17434 trajectory names exist as render frames, poses.csv rows and depth dirs, and that tol_metric_10m_floor equals the run summary&#x27;s tolerances. Measured 76 s per rendering, 853 MB each (311 MB of it a private copy of the scene model), ETA 11:30, 51 GB total.</span></li>
+<li><time>10:25</time><span>Cost of one lens measured from the two completed rounds (17314 and 17434 views): planning 7.6 min, render 11.1 (26.1 views/s), depth 89.5 (3.24), verify 27.5 (10.5), clip metrics 46.8 (6.2), export about 72 (4.0) - 4.2 h per lens, so 12.7 h for the three lenses still to run. Clip metrics and export together (119 min) cost more than the depth cast and are single-threaded loops over independent views. Status page pd_status_page.py -&gt; docs/scenecap_0913_status.html.</span></li>
+</ul>
+<h2>Where to look</h2><div class='tablewrap'><table>
+<tr><td>results page (the long one)</td><td><a href='scenecap_0913_results.html'>scenecap_0913_results.html</a></td></tr>
+<tr><td>run record</td><td><a href='scenecap_0913_run.html'>scenecap_0913_run.html</a></td></tr>
+<tr><td>production log</td><td><code>G:\0913SceneCapDepth_work\postdirector\run_direct_p5_stdout.log</code></td></tr>
+<tr><td>run summary — every number on this page</td><td><code>G:\0913SceneCapDepth_work\postdirector\vehicle_sets\direct_p5_summary.json</code></td></tr>
+<tr><td>delivered clip</td><td><code>G:\0913SceneCapDepth_work\postdirector\vehicle_sets\seres_f3_right\direct_p5\clips\clip1</code></td></tr>
+<tr><td>byd export, in progress</td><td><code>G:\0913SceneCapDepth_work\postdirector\export_byd_stdout.log</code></td></tr>
+<tr><td>the follower&#x27;s record of the failure</td><td><code>MOD_PostDirector\HANDOFF_SceneCap0913.md — section: What the first production attempt cost</code></td></tr>
+</table></div>
+</main></body></html>

@@ -1,0 +1,244 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>Car Park to Clips</title>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap'>
+</head><body><style>
+:root{
+  --ground:#f2f4f6; --panel:#fff; --ink:#151d25; --ink-2:#5a6875; --ink-3:#8b98a5; --rule:#d9dfe5;
+  --accent:#1f6f8b; --accent-bg:#e4eff3; --accent-line:#8fbccc;
+  --done:#176e47; --done-bg:#e4f3ea; --run:#94500f; --run-bg:#f9ecdf; --opt:#5a6875; --opt-bg:#e9edf1;
+  --lane-capture:#7b5ea7; --lane-register:#1f6f8b; --lane-mesh:#2a7d63; --lane-plan:#94500f; --lane-deliver:#b23a3a;
+  --shadow:0 1px 2px rgba(16,24,32,.07), 0 6px 16px -12px rgba(16,24,32,.5);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#11171d; --panel:#1a222b; --ink:#e7edf2; --ink-2:#9aa7b4; --ink-3:#6f7d8a; --rule:#2b3640;
+  --accent:#6fb7d3; --accent-bg:#172e39; --accent-line:#3c6d80;
+  --done:#5cc48f; --done-bg:#14302a; --run:#e0a05c; --run-bg:#3a2a18; --opt:#9aa7b4; --opt-bg:#232d37;
+  --lane-capture:#b39ddb; --lane-register:#6fb7d3; --lane-mesh:#71c3a8; --lane-plan:#e0a05c; --lane-deliver:#e07a7a;
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 8px 20px -14px rgba(0,0,0,.9);
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --ground:#11171d; --panel:#1a222b; --ink:#e7edf2; --ink-2:#9aa7b4; --ink-3:#6f7d8a; --rule:#2b3640;
+  --accent:#6fb7d3; --accent-bg:#172e39; --accent-line:#3c6d80;
+  --done:#5cc48f; --done-bg:#14302a; --run:#e0a05c; --run-bg:#3a2a18; --opt:#9aa7b4; --opt-bg:#232d37;
+  --lane-capture:#b39ddb; --lane-register:#6fb7d3; --lane-mesh:#71c3a8; --lane-plan:#e0a05c; --lane-deliver:#e07a7a;
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 8px 20px -14px rgba(0,0,0,.9);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);margin:0;font-family:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;font-size:15.5px;line-height:1.6}
+main{max-width:1180px;margin:0 auto;padding:48px 28px 96px}
+h1,h2,h3,h4{margin:0;line-height:1.15;text-wrap:balance}
+h1{font-size:clamp(28px,4vw,42px);font-weight:600;letter-spacing:-.022em}
+h2{font-size:21px;font-weight:600;letter-spacing:-.01em}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.lede{font-size:18px;line-height:1.55;color:var(--ink-2);max-width:66ch;margin:16px 0 0}
+.lede b{color:var(--ink);font-weight:500}
+.meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:20px;font-size:13px;color:var(--ink-3);font-family:"IBM Plex Mono",monospace}
+.rail{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin:36px 0 8px}
+.rail div{background:var(--panel);padding:14px 16px}
+.rail .k{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.rail .v{font-family:"IBM Plex Mono",monospace;font-size:23px;font-weight:500;margin-top:5px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.rail .s{font-size:12.5px;color:var(--ink-2);margin-top:3px}
+section{margin-top:56px}
+section>p{max-width:70ch;color:var(--ink-2);margin:10px 0 0}
+.flowwrap{overflow-x:auto;margin:22px 0 0;padding-bottom:6px}
+svg.flow{display:block;min-width:940px;width:100%;height:auto}
+svg.flow text{font-family:"IBM Plex Sans",system-ui,sans-serif;fill:var(--ink)}
+svg.flow .lane{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
+svg.flow .bt{font-size:11.5px;font-weight:600}
+svg.flow .bs{font-size:10px;fill:var(--ink-3)}
+svg.flow .box{fill:var(--panel);stroke:var(--rule)}
+svg.flow .link{stroke:var(--accent-line);fill:none;stroke-width:1.3}
+svg.flow .link.cross{stroke-dasharray:4 3}
+svg.flow a{cursor:pointer}
+svg.flow a:hover .box{stroke:var(--accent);stroke-width:2}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px;margin-top:20px;align-items:start}
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:16px 18px 18px;box-shadow:var(--shadow);scroll-margin-top:20px}
+.card:target{outline:2px solid var(--accent);outline-offset:3px}
+.card .top{display:flex;align-items:baseline;gap:9px;margin-bottom:2px}
+.card .id{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3)}
+.card h4{font-size:15px;font-weight:600;flex:1}
+.card p{margin:8px 0 0;font-size:13.8px;color:var(--ink-2)}
+.card dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:12px 0 0;font-size:12.8px}
+.card dt{color:var(--ink-3);font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding-top:3px}
+.card dd{margin:0;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.chip{display:inline-flex;align-items:center;gap:5px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--opt-bg);color:var(--opt);white-space:nowrap}
+.chip.done{background:var(--done-bg);color:var(--done)}
+.chip.run{background:var(--run-bg);color:var(--run)}
+.chip.opt{background:var(--accent-bg);color:var(--accent)}
+.lanehead{display:flex;align-items:center;gap:12px;margin:40px 0 0}
+.lanehead h3{font-size:16px;font-weight:600}
+.lanehead .bar{width:34px;height:3px;border-radius:2px}
+.lanehead p{margin:0;font-size:13.5px;color:var(--ink-3)}
+.note{font-size:13.5px;color:var(--ink-3);max-width:74ch}
+code{font-family:"IBM Plex Mono",monospace;font-size:12.4px;background:var(--accent-bg);color:var(--accent);padding:1px 5px;border-radius:4px}
+.foot{margin-top:60px;padding-top:20px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-3)}
+a{color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.card{transition:box-shadow .18s ease}}
+</style>
+<main>
+<header>
+<div class='eyebrow'>Underground car park &middot; 2026-09-13 &middot; MOD_PanoReg + MOD_PostDirector</div>
+<h1>Car Park to Clips</h1>
+<p class='lede'>A 103-second walk with a 360 camera, two GoPro walks of the same aisles, and a pipeline that turns them into <b>34,748 frames of vehicle-lens video, each with a metric range map</b> and not one of them showing the person who carried the camera. Every block below says what it does and what it measured.</p>
+<div class='meta'><span>built 2026-09-15 14:17</span><span>120 clips exported</span><span>58 min of footage from 103 s of capture</span></div>
+</header>
+<div class='rail'>
+<div><div class='k'>Source</div><div class='v'>5,136</div><div class='s'>frames at 50 fps, 7,680 px wide</div></div>
+<div><div class='k'>Registered</div><div class='v'>4,548</div><div class='s'>cameras of both walks in one frame</div></div>
+<div><div class='k'>Clips</div><div class='v'>120</div><div class='s'>30 s at 10 Hz, each its own path</div></div>
+<div><div class='k'>Depth</div><div class='v'>10 m</div><div class='s'>cap; beyond it carries no label</div></div>
+<div><div class='k'>Per clip</div><div class='v'>2.9 min</div><div class='s'>render, depth, verify, measure, export</div></div>
+<div><div class='k'>Carrier</div><div class='v'>none</div><div class='s'>visible in any delivered frame, audited</div></div>
+</div>
+<section><h2>The flow</h2><p>Five stages. The dashed links are where one stage hands its result to the next; click a block to jump to its card.</p>
+<div class='flowwrap'><svg class='flow' viewBox='0 0 1156 602' role='img' aria-label='the pipeline from capture to clips'><defs><marker id='ah' viewBox='0 0 8 8' refX='7' refY='4' markerWidth='7' markerHeight='7' orient='auto'><path d='M0 0 L8 4 L0 8 z' fill='var(--accent-line)'/></marker></defs><text class='lane' x='16' y='69.0' fill='var(--lane-capture)'>Capture</text><rect x='16' y='75.0' width='88' height='2.5' rx='1.2' fill='var(--lane-capture)' opacity='.45'/><text class='lane' x='16' y='189.0' fill='var(--lane-register)'>Model</text><rect x='16' y='195.0' width='88' height='2.5' rx='1.2' fill='var(--lane-register)' opacity='.45'/><text class='lane' x='16' y='309.0' fill='var(--lane-mesh)'>Surface</text><rect x='16' y='315.0' width='88' height='2.5' rx='1.2' fill='var(--lane-mesh)' opacity='.45'/><text class='lane' x='16' y='429.0' fill='var(--lane-plan)'>Direct</text><rect x='16' y='435.0' width='88' height='2.5' rx='1.2' fill='var(--lane-plan)' opacity='.45'/><text class='lane' x='16' y='549.0' fill='var(--lane-deliver)'>Produce</text><rect x='16' y='555.0' width='88' height='2.5' rx='1.2' fill='var(--lane-deliver)' opacity='.45'/><path class='link' d='M310 65.0 H330' marker-end='url(#ah)'/><path class='link' d='M310 185.0 H330' marker-end='url(#ah)'/><path class='link' d='M514 185.0 H534' marker-end='url(#ah)'/><path class='link' d='M718 185.0 H738' marker-end='url(#ah)'/><path class='link' d='M922 185.0 H942' marker-end='url(#ah)'/><path class='link' d='M310 305.0 H330' marker-end='url(#ah)'/><path class='link' d='M514 305.0 H534' marker-end='url(#ah)'/><path class='link' d='M310 425.0 H330' marker-end='url(#ah)'/><path class='link' d='M514 425.0 H534' marker-end='url(#ah)'/><path class='link' d='M718 425.0 H738' marker-end='url(#ah)'/><path class='link' d='M922 425.0 H942' marker-end='url(#ah)'/><path class='link' d='M310 545.0 H330' marker-end='url(#ah)'/><path class='link' d='M514 545.0 H534' marker-end='url(#ah)'/><path class='link' d='M718 545.0 H738' marker-end='url(#ah)'/><path class='link' d='M922 545.0 H942' marker-end='url(#ah)'/><path class='link cross' d='M425.0 96 V125.0 H221.0 V148' marker-end='url(#ah)'/><path class='link cross' d='M1037.0 216 V245.0 H221.0 V268' marker-end='url(#ah)'/><path class='link cross' d='M629.0 336 V365.0 H221.0 V388' marker-end='url(#ah)'/><path class='link cross' d='M1037.0 456 V485.0 H221.0 V508' marker-end='url(#ah)'/><a href='#cA'><rect class='box' x='132' y='34' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='132' y='34' width='3.5' height='62' rx='1.7' fill='var(--lane-capture)'/><text class='bt' x='146' y='59'>360 walk</text><text class='bs' x='146' y='77'>Insta360 X6</text></a><a href='#cB'><rect class='box' x='336' y='34' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='336' y='34' width='3.5' height='62' rx='1.7' fill='var(--lane-capture)'/><text class='bt' x='350' y='59'>Two GoPro walks</text><text class='bs' x='350' y='77'>the geometry donors</text></a><a href='#cC'><rect class='box' x='132' y='154' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='132' y='154' width='3.5' height='62' rx='1.7' fill='var(--lane-register)'/><text class='bt' x='146' y='179'>Cube faces and masks</text><text class='bs' x='146' y='197'>pr_cut_faces, pr_mask_faces</text></a><a href='#cD'><rect class='box' x='336' y='154' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='336' y='154' width='3.5' height='62' rx='1.7' fill='var(--lane-register)'/><text class='bt' x='350' y='179'>RealityScan stage 1</text><text class='bs' x='350' y='197'>the 360 backbone</text></a><a href='#cE'><rect class='box' x='540' y='154' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='540' y='154' width='3.5' height='62' rx='1.7' fill='var(--lane-register)'/><text class='bt' x='554' y='179'>RealityScan stage 2</text><text class='bs' x='554' y='197'>GoPro frames added</text></a><a href='#cF'><rect class='box' x='744' y='154' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='744' y='154' width='3.5' height='62' rx='1.7' fill='var(--lane-register)'/><text class='bt' x='758' y='179'>Join by geometry</text><text class='bs' x='758' y='197'>pr_register_orthomaps</text></a><a href='#cG'><rect class='box' x='948' y='154' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='948' y='154' width='3.5' height='62' rx='1.7' fill='var(--lane-register)'/><text class='bt' x='962' y='179'>The merged model</text><text class='bs' x='962' y='197'>one frame, one gauge</text></a><a href='#cH'><rect class='box' x='132' y='274' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='132' y='274' width='3.5' height='62' rx='1.7' fill='var(--lane-mesh)'/><text class='bt' x='146' y='299'>Gaussian splatting</text><text class='bs' x='146' y='317'>RaDe-GS, the radegs container</text></a><a href='#cI'><rect class='box' x='336' y='274' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='336' y='274' width='3.5' height='62' rx='1.7' fill='var(--lane-mesh)'/><text class='bt' x='350' y='299'>Eyeball check</text><text class='bs' x='350' y='317'>mesh against photo</text></a><a href='#cJ'><rect class='box' x='540' y='274' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='540' y='274' width='3.5' height='62' rx='1.7' fill='var(--lane-mesh)'/><text class='bt' x='554' y='299'>Metric gauge</text><text class='bs' x='554' y='317'>provisional</text></a><a href='#cK'><rect class='box' x='132' y='394' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='132' y='394' width='3.5' height='62' rx='1.7' fill='var(--lane-plan)'/><text class='bt' x='146' y='419'>Find the carrier</text><text class='bs' x='146' y='437'>pd_detect</text></a><a href='#cL'><rect class='box' x='336' y='394' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='336' y='394' width='3.5' height='62' rx='1.7' fill='var(--lane-plan)'/><text class='bt' x='350' y='419'>Confidence region</text><text class='bs' x='350' y='437'>pd_coverage</text></a><a href='#cM'><rect class='box' x='540' y='394' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='540' y='394' width='3.5' height='62' rx='1.7' fill='var(--lane-plan)'/><text class='bt' x='554' y='419'>Hole lattice</text><text class='bs' x='554' y='437'>pd_select</text></a><a href='#cN'><rect class='box' x='744' y='394' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='744' y='394' width='3.5' height='62' rx='1.7' fill='var(--lane-plan)'/><text class='bt' x='758' y='419'>The director</text><text class='bs' x='758' y='437'>pd_direct</text></a><a href='#cO'><rect class='box' x='948' y='394' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='948' y='394' width='3.5' height='62' rx='1.7' fill='var(--lane-plan)'/><text class='bt' x='962' y='419'>Avoid the holes</text><text class='bs' x='962' y='437'>the cost that made it work</text></a><a href='#cP'><rect class='box' x='132' y='514' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='132' y='514' width='3.5' height='62' rx='1.7' fill='var(--lane-deliver)'/><text class='bt' x='146' y='539'>Render</text><text class='bs' x='146' y='557'>pd_render</text></a><a href='#cQ'><rect class='box' x='336' y='514' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='336' y='514' width='3.5' height='62' rx='1.7' fill='var(--lane-deliver)'/><text class='bt' x='350' y='539'>Cast the depth</text><text class='bs' x='350' y='557'>the expensive step</text></a><a href='#cR'><rect class='box' x='540' y='514' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='540' y='514' width='3.5' height='62' rx='1.7' fill='var(--lane-deliver)'/><text class='bt' x='554' y='539'>Verify and measure</text><text class='bs' x='554' y='557'>pd_verify, pd_metrics</text></a><a href='#cS'><rect class='box' x='744' y='514' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='744' y='514' width='3.5' height='62' rx='1.7' fill='var(--lane-deliver)'/><text class='bt' x='758' y='539'>Export the clips</text><text class='bs' x='758' y='557'>what you take away</text></a><a href='#cT'><rect class='box' x='948' y='514' width='178' height='62' rx='9' stroke-width='1.2'/><rect x='948' y='514' width='3.5' height='62' rx='1.7' fill='var(--lane-deliver)'/><text class='bt' x='962' y='539'>Audit</text><text class='bs' x='962' y='557'>five auditors, then refuters</text></a></svg></div></section>
+<section><div class='lanehead'><span class='bar' style='background:var(--lane-capture)'></span><h3>Capture</h3><p>what the two walks recorded</p></div>
+<div class='cards'>
+<article class='card' id='cA'>
+<div class='top'><span class='id'>A</span><h4>360 walk</h4><span class='chip done'>finished</span></div>
+<div class='id'>Insta360 X6</div><p>One operator walks the car park with a 360 camera on a pole. Everything the virtual lenses will ever see has to be in these frames.</p><dl>
+<dt>recorded</dt><dd>5,136 frames, 102.7 s at 50 fps</dd>
+<dt>stitched</dt><dd>7,680 x 3,840 per frame</dd>
+<dt>output</dt><dd>G:/0913SceneCapDepth/pano_video</dd></dl></article>
+<article class='card' id='cB'>
+<div class='top'><span class='id'>B</span><h4>Two GoPro walks</h4><span class='chip done'>finished</span></div>
+<div class='id'>the geometry donors</div><p>Two bodies carried through the same aisles. Their frames carry the texture detail that a 360 pano at 2 Hz cannot, and they are what the surface is built from.</p><dl>
+<dt>frames</dt><dd>1,864 + 1,798 staged</dd>
+<dt>selection</dt><dd>sharpest of every three</dd>
+<dt>output</dt><dd>G:/0913SceneCapDepth_work/gopro</dd></dl></article>
+</div></section>
+<section><div class='lanehead'><span class='bar' style='background:var(--lane-register)'></span><h3>Model</h3><p>both walks into a single registered frame</p></div>
+<div class='cards'>
+<article class='card' id='cC'>
+<div class='top'><span class='id'>C</span><h4>Cube faces and masks</h4><span class='chip done'>finished</span></div>
+<div class='id'>pr_cut_faces, pr_mask_faces</div><p>Each 360 instant becomes six 120 deg faces, and the operator is segmented out of every one so the matcher never keys on a person.</p><dl>
+<dt>faces</dt><dd>1,236 at 2 Hz</dd>
+<dt>masked</dt><dd>1,236 faces</dd>
+<dt>output</dt><dd>&lt;work&gt;/faces_s25</dd></dl></article>
+<article class='card' id='cD'>
+<div class='top'><span class='id'>D</span><h4>RealityScan stage 1</h4><span class='chip done'>finished</span></div>
+<div class='id'>the 360 backbone</div><p>The faces align into one rigid walk. This is the backbone: every later step is expressed in its frame.</p><dl>
+<dt>registered</dt><dd>1,093 of 1,236 faces</dd>
+<dt>took</dt><dd>9.6 min</dd>
+<dt>output</dt><dd>&lt;work&gt;/rc/stage1</dd></dl></article>
+<article class='card' id='cE'>
+<div class='top'><span class='id'>E</span><h4>RealityScan stage 2</h4><span class='chip done'>finished</span></div>
+<div class='id'>GoPro frames added</div><p>The GoPro frames are aligned against the locked backbone. They registered well but into a component of their own: not one feature match crossed the two cameras.</p><dl>
+<dt>registered</dt><dd>3,455 frames</dd>
+<dt>joined the backbone</dt><dd>no</dd>
+<dt>output</dt><dd>&lt;work&gt;/rc/stage2</dd></dl></article>
+<article class='card' id='cF'>
+<div class='top'><span class='id'>F</span><h4>Join by geometry</h4><span class='chip done'>finished</span></div>
+<div class='id'>pr_register_orthomaps</div><p>Since matching refused, the two dense clouds are joined instead: SIFT on their floor orthomaps, lifted with gravity, then ICP with scale. Metashape&#x27;s own cross-set matching was run as an independent check.</p><dl>
+<dt>scale</dt><dd>0.6117</dd>
+<dt>residual</dt><dd>median 0.044 u</dd>
+<dt>cross-check</dt><dd>scale 0.6111, centres within 0.117 u</dd>
+<dt>output</dt><dd>&lt;work&gt;/register_orthomaps</dd></dl></article>
+<article class='card' id='cG'>
+<div class='top'><span class='id'>G</span><h4>The merged model</h4><span class='chip done'>finished</span></div>
+<div class='id'>one frame, one gauge</div><p>Both walks in a single COLMAP model, plus the rig pose of every 360 instant. Everything downstream reads these poses.</p><dl>
+<dt>cameras</dt><dd>4,548</dd>
+<dt>points</dt><dd>2,492,211</dd>
+<dt>gravity spread</dt><dd>median 0.39 deg</dd>
+<dt>output</dt><dd>&lt;work&gt;/colmap/merged_geo/sparse/0</dd></dl></article>
+</div></section>
+<section><div class='lanehead'><span class='bar' style='background:var(--lane-mesh)'></span><h3>Surface</h3><p>the mesh the depth is cast from, and what a unit is worth</p></div>
+<div class='cards'>
+<article class='card' id='cH'>
+<div class='top'><span class='id'>H</span><h4>Gaussian splatting</h4><span class='chip done'>finished</span></div>
+<div class='id'>RaDe-GS, the radegs container</div><p>The surface comes from the splatting lane, not from the photogrammetry tool: it trains on the GoPro views and extracts a mesh. A second run on Metashape-optimised poses is the one in production.</p><dl>
+<dt>run 1</dt><dd>PSNR 25.67, 22,258,370 faces</dd>
+<dt>run 2</dt><dd>PSNR 24.85, 22,958,697 faces</dd>
+<dt>wall</dt><dd>1.0 h</dd>
+<dt>output</dt><dd>G:\0722_NaiveGS_and_Gaussian\runs\scenecap0913_ms\recon_colored.ply</dd></dl></article>
+<article class='card' id='cI'>
+<div class='top'><span class='id'>I</span><h4>Eyeball check</h4><span class='chip done'>finished</span></div>
+<div class='id'>mesh against photo</div><p>The mesh is rendered from the registered cameras and compared with the photographs, and the two meshes against each other. It is the test that the join is real and not a plausible-looking fit.</p><dl>
+<dt>range difference</dt><dd>0.62 % median</dd>
+<dt>within 5 %</dt><dd>92.1 % of pixels</dd>
+<dt>output</dt><dd>&lt;work&gt;/eyeball</dd></dl></article>
+<article class='card' id='cJ'>
+<div class='top'><span class='id'>J</span><h4>Metric gauge</h4><span class='chip opt'>provisional</span></div>
+<div class='id'>provisional</div><p>Model units are arbitrary. The gauge is read off the floor itself: the pitch of the bay separators, found by Hough segments and an autocorrelation, set to a standard bay width.</p><dl>
+<dt>gauge</dt><dd>0.6579 m per unit</dd>
+<dt>from</dt><dd>bay pitch 3.80 u = 2.5 m</dd>
+<dt>cross-check</dt><dd>clear height 2.52 m</dd>
+<dt>output</dt><dd>&lt;work&gt;/metric/floor_lines</dd></dl></article>
+</div></section>
+<section><div class='lanehead'><span class='bar' style='background:var(--lane-plan)'></span><h3>Direct</h3><p>where to look, so every frame is usable</p></div>
+<div class='cards'>
+<article class='card' id='cK'>
+<div class='top'><span class='id'>K</span><h4>Find the carrier</h4><span class='chip done'>finished</span></div>
+<div class='id'>pd_detect</div><p>A segmentation pass over every source frame records where people are on the sphere, so the planner can steer the virtual lens away from the one who carries the camera.</p><dl>
+<dt>frames</dt><dd>5,136 at 8.2 fps</dd>
+<dt>grid</dt><dd>1 deg on the sphere</dd>
+<dt>output</dt><dd>&lt;pd&gt;/vehicle_sets/detect</dd></dl></article>
+<article class='card' id='cL'>
+<div class='top'><span class='id'>L</span><h4>Confidence region</h4><span class='chip done'>finished</span></div>
+<div class='id'>pd_coverage</div><p>Where the scan actually went, grown by five metres. A view that leaves this region within the depth cap is looking at the edge of what was ever measured.</p><dl>
+<dt>region</dt><dd>518 m2</dd>
+<dt>from</dt><dd>4,753 scan positions + 5 m</dd>
+<dt>output</dt><dd>&lt;pd&gt;/coverage</dd></dl></article>
+<article class='card' id='cM'>
+<div class='top'><span class='id'>M</span><h4>Hole lattice</h4><span class='chip done'>finished</span></div>
+<div class='id'>pd_select</div><p>The mesh is cast once per source frame over a half-degree lattice, so the planner knows, for any direction, whether the surface is there, how far it is, and whether a downward ray would fall through the floor.</p><dl>
+<dt>lattice</dt><dd>5136 x 361 x 720</dd>
+<dt>built in</dt><dd>3.5 min</dd>
+<dt>floor holes</dt><dd>12.3 % of the region&#x27;s floor</dd>
+<dt>output</dt><dd>&lt;pd&gt;/select_lattice_metric</dd></dl></article>
+<article class='card' id='cN'>
+<div class='top'><span class='id'>N</span><h4>The director</h4><span class='chip done'>finished</span></div>
+<div class='id'>pd_direct</div><p>Every 30 s window of the walk is planned on its own: a smooth yaw path per pitch, scored on seven criteria per frame, then the windows that overlap least are chosen. Each window is planned many times over, so one moment yields many clips.</p><dl>
+<dt>windows</dt><dd>73, 72 of them &gt;= 95 % good</dd>
+<dt>renderings</dt><dd>4 passes x 5 phases = 20 per window</dd>
+<dt>separation</dt><dd>axes &gt;= 5 deg apart at every instant</dd>
+<dt>output</dt><dd>&lt;pd&gt;/vehicle_sets/&lt;lens&gt;/direct_p5</dd></dl></article>
+<article class='card' id='cO'>
+<div class='top'><span class='id'>O</span><h4>Avoid the holes</h4><span class='chip done'>finished</span></div>
+<div class='id'>the cost that made it work</div><p>Views are pushed away from mesh holes and from the region&#x27;s edge. Measured on one lens, the frames that leak through the floor fall by a fifth, and the frames with no carrier-free direction fall to none.</p><dl>
+<dt>leaky frames</dt><dd>266 -&gt; 206</dd>
+<dt>no free yaw</dt><dd>58 -&gt; 0</dd>
+<dt>unavoidable</dt><dd>184 frames</dd>
+<dt>output</dt><dd>&lt;pd&gt;/cover_test</dd></dl></article>
+</div></section>
+<section><div class='lanehead'><span class='bar' style='background:var(--lane-deliver)'></span><h3>Produce</h3><p>the clips, and what they are worth</p></div>
+<div class='cards'>
+<article class='card' id='cP'>
+<div class='top'><span class='id'>P</span><h4>Render</h4><span class='chip done'>finished</span></div>
+<div class='id'>pd_render</div><p>The planned views are cut out of the 8K pano through the vehicle lens model, one registered image per frame.</p><dl>
+<dt>rate</dt><dd>25.7 views/s</dd>
+<dt>per clip</dt><dd>11 s</dd>
+<dt>output</dt><dd>&lt;lens&gt;/direct_p5/render</dd></dl></article>
+<article class='card' id='cQ'>
+<div class='top'><span class='id'>Q</span><h4>Cast the depth</h4><span class='chip done'>finished</span></div>
+<div class='id'>the expensive step</div><p>Each view&#x27;s range map is cast from the mesh along the lens&#x27;s own rays, so the depth is the fisheye&#x27;s, not a pinhole&#x27;s reprojected.</p><dl>
+<dt>rate</dt><dd>3.24 views/s</dd>
+<dt>per clip</dt><dd>89 s, three quarters of the cost</dd>
+<dt>output</dt><dd>&lt;lens&gt;/direct_p5/depth</dd></dl></article>
+<article class='card' id='cR'>
+<div class='top'><span class='id'>R</span><h4>Verify and measure</h4><span class='chip done'>finished</span></div>
+<div class='id'>pd_verify, pd_metrics</div><p>Every rendered frame is checked for people again, and measured: how much of the image carries a label, how sharp, how exposed, how far.</p><dl>
+<dt>checked</dt><dd>every frame of every clip</dd>
+<dt>per clip</dt><dd>27 s verify, 14 s metrics</dd>
+<dt>output</dt><dd>&lt;lens&gt;/direct_p5/verify</dd></dl></article>
+<article class='card' id='cS'>
+<div class='top'><span class='id'>S</span><h4>Export the clips</h4><span class='chip run'>running</span></div>
+<div class='id'>what you take away</div><p>Each rendering becomes a folder: the frames, the range maps with far surfaces and floor leaks masked out, its own registered model, and the per-frame criteria.</p><dl>
+<dt>exported</dt><dd>120 renderings, 34,748 frames</dd>
+<dt>lenses finished</dt><dd>2 of 4</dd>
+<dt>per clip</dt><dd>34 s</dd>
+<dt>output</dt><dd>&lt;lens&gt;/direct_p5/clips/clip&lt;k&gt;/pass&lt;p&gt;</dd></dl></article>
+<article class='card' id='cT'>
+<div class='top'><span class='id'>T</span><h4>Audit</h4><span class='chip done'>finished</span></div>
+<div class='id'>five auditors, then refuters</div><p>The delivered files are measured independently: floor flatness, agreement between renderings, poses against the registration, and whether any frame shows the carrier. Every claimed defect is re-measured by someone trying to refute it.</p><dl>
+<dt>floor</dt><dd>flat to 7.3 mm, level to 0.41 deg</dd>
+<dt>two renderings, one instant</dt><dd>agree to 2.5 mm</dd>
+<dt>carrier visible</dt><dd>in no frame</dd>
+<dt>defects that survived</dt><dd>9 of 16</dd>
+<dt>output</dt><dd>MOD_PostDirector/notes/scenecap_0913_qa_byd_sq_back.json</dd></dl></article>
+</div></section>
+<section><h2>What a reader should distrust</h2><p class='note'>The metric scale is provisional: every metre on this page follows from reading the bay-separator pitch as 2.5 m, and a tape measure in the garage would fix it in an afternoon. The mesh carries one crater in the floor, about two metres across, that the walk crosses three times. And the clip models declare <code>OPENCV_FISHEYE</code>, whose reference implementation cannot evaluate the outer sixth of a 206 deg lens, so the depth there is correct but standard tooling will not reproduce it.</p></section>
+<div class='foot'>Built from the tools' own JSON by <code>pr_flow_page.py</code>; no figure on this page was typed by hand. 2026-09-15 14:17.</div>
+</main></body></html>
